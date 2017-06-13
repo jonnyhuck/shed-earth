@@ -12,7 +12,7 @@
 	function populateReference(){
 		//populate the suggested reference for today
 		var d = new Date(); 
-		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J. & Hughes, P. (", d.getFullYear(),"). SHED Earth. <a href=\"http://shed-earth.org\">http://shed-earth.org</a>. <em>Accessed ", d.getDate(), "/", d.getMonth(), "/", d.getFullYear(), ".</em></p>"].join('');
+		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J. & Hughes, P. (", d.getFullYear(),"). SHED Earth. <a href=\"http://www.shed.earth/shedcalc\">http://shed.earth</a>. <em>Accessed ", d.getDate(), "/", d.getMonth(), "/", d.getFullYear(), ".</em></p>"].join('');
 	}
 </script>
 
@@ -25,11 +25,11 @@
 		<h3>Results</h3>
 		<table class='u-full-width'>
 			<thead>
-			<tr><th>Name</th><th>Latitude</th><th>Longitude</th><th>Mean</th><th>MAD</th><th>Age(ka) &plusmn; &sigma;</th></tr>
+			<tr><th>Name</th><th>Latitude</th><th>Longitude</th><th>Mean</th><th>MAD</th><th>Age(ka)</th><th>&plusmn; 1&sigma;</th></tr>
 			</thead>
 			<tbody>
 			{% for row in outputs %}
-				<tr><td>{{row.name}}</td><td>{{row.lat}}</td><td>{{row.lng}}</td><td>{{row.mean}}</td><td>{{row.mad}}</td><td>{{row.age}} &plusmn; {{row.errors}}</td></tr>
+				<tr><td>{{row.name}}</td><td>{{row.lat}}</td><td>{{row.lng}}</td><td>{{row.mean}}</td><td>{{row.mad}}</td><td>{{row.age}}</td><td>{{row.errors}}</td></tr>
 			{% endfor %}
 			</tbody>
 		</table>
@@ -120,7 +120,7 @@
 		<p>If you use this site in academic works, please reference it accordingly:</p>
 		<div id='ref'></div><script>populateReference();</script>
 		<h5>Source Code</h5>
-		<p>The source code for this website is available on <a href="https://github.com/jonnyhuck">GitHub</a>.</p>
+		<p>The source code for this website is available on <a href="https://github.com/jonnyhuck/shed-earth">GitHub</a>.</p>
 		<h5>References</h5>
 		<ol>
 			<li><a href="https://doi.org/10.1002/esp.2040">Viles, H., Goudie, A., Grab, S., & Lalley, J. (2011). The use of the Schmidt Hammer and Equotip for rock hardness assessment in geomorphology and heritage science: A comparative analysis. Earth Surface Processes and Landforms, 36(3), 320–333.</a></li>

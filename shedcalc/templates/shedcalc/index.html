@@ -12,7 +12,7 @@
 	function populateReference(){
 		//populate the suggested reference for today
 		var d = new Date(); 
-		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J. & Hughes, P. (", d.getFullYear(),"). SHED Earth. <a href=\"http://shed-earth.org\">http://shed-earth.org</a>. <em>Accessed ", d.getDate(), "/", d.getMonth(), "/", d.getFullYear(), ".</em></p>"].join('');
+		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J. & Hughes, P. (", d.getFullYear(),"). SHED Earth. <a href=\"http://www.shed.earth/shedcalc\">http://shed.earth</a>. <em>Accessed ", d.getDate(), "/", d.getMonth(), "/", d.getFullYear(), ".</em></p>"].join('');
 	}
 
 	/**
@@ -279,7 +279,7 @@
 		<p>If you use this site in academic works, please reference it accordingly:</p>
 		<div id='ref'></div><script>populateReference();</script>
 		<h5>Source Code</h5>
-		<p>The source code for this website is available on <a href="https://github.com/jonnyhuck">GitHub</a>.</p>
+		<p>The source code for this website is available on <a href="https://github.com/jonnyhuck/shed-earth">GitHub</a>.</p>
 		
 		<h5 id="References">References</h5>
 		<ol>
