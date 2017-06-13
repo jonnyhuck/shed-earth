@@ -28,7 +28,7 @@
 	/**
 	 * Verify form values before submitting for calculation
 	 */
-	function validateForm(){
+	function validateForm(){	
 		
 		//verify that there is some data
 		if (document.getElementById('tabdata').value == "") { 
@@ -54,14 +54,20 @@
 			
 			//loop through columns: skip the first row as this CAN be a string
 			for(var j = 1; j < cols; j++){	
-			
+		
 				// extract the columns from the current row
 				colData = rowData[i].split('\t');
 				
-				//verify numeric
-				if(isNaN(colData[j])){
-					alert(["R-values need to be numeric\nNon-numeric value found at row", i+1, "column", j+1].join(' '));
-					return false; 
+				if(colData.length == cols){
+			
+					//verify numeric
+					if(isNaN(colData[j])){
+						alert(["R-values need to be numeric\nNon-numeric value found at row", i+1, "column", j+1].join(' '));
+						return false; 
+					}
+				} else {
+					alert(["Warning: row", i, "has", colData.length, "columns, expected", cols].join(" "));
+					return false;
 				}
 			}
 		}
