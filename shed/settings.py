@@ -25,7 +25,9 @@ SECRET_KEY = 'vx=*9a+z^5e+f8xqgcjspxvk6$2374^5g4&kk)j*7t1fx@#a0t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+	'www.shed.earth',
+]
 
 
 # Application definition
