@@ -26,6 +26,7 @@ SECRET_KEY = 'vx=*9a+z^5e+f8xqgcjspxvk6$2374^5g4&kk)j*7t1fx@#a0t'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+	'127.0.0.1',
 	'www.shed.earth',
 ]
 
