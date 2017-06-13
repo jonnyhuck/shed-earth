@@ -131,6 +131,9 @@ def chart(request):
 	fig = Figure()
 	ax = fig.add_subplot(1,1,1)
 	
+	# set axis limit to stop y axis going to -5...
+	ax.set_ylim(0, 25)
+	
 	# regression line
 	npts = 100
 	px = np.linspace(np.min(x),np.max(x),num=npts)
@@ -143,14 +146,14 @@ def chart(request):
 	# prediction limit lines
 	x.sort()
 	limit = (1-alpha)*100
-	ax.plot(x, fit(x)+tval*se_predict(x), '#0076D4', dashes=[3, 1.5], label='1 Sigma Prediction limit ({0:.1f}%)'.format(limit), linewidth=0.8)
-	ax.plot(x, fit(x)-tval*se_predict(x), '#0076D4', dashes=[3, 1.5], linewidth=0.8)
+	ax.plot(x, fit(x)+tval*se_predict(x), '#0076D4', dashes=[9, 4.5], label='1 Sigma Prediction limit ({0:.1f}%)'.format(limit), linewidth=0.8)
+	ax.plot(x, fit(x)-tval*se_predict(x), '#0076D4', dashes=[9, 4.5], linewidth=0.8)
 	
 	# same for 2 sigma...
 	limit = (1-twoSigma)*100
 	tval2 = stats.t.isf(twoSigma / 2., df)
-	ax.plot(x, fit(x)+tval2*se_predict(x), '0.5', dashes=[3, 1], label='2 Sigma Prediction Limit ({0:.1f}%)'.format(limit), linewidth=0.5)
-	ax.plot(x, fit(x)-tval2*se_predict(x), '0.5', dashes=[3, 1], linewidth=0.5)
+	ax.plot(x, fit(x)+tval2*se_predict(x), '0.5', dashes=[9, 3], label='2 Sigma Prediction Limit ({0:.1f}%)'.format(limit), linewidth=0.5)
+	ax.plot(x, fit(x)-tval2*se_predict(x), '0.5', dashes=[9, 3], linewidth=0.5)
 
 	# labels etc
 	ax.set_xlabel('Mean R-Value')
