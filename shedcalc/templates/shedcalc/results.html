@@ -12,7 +12,7 @@
 	function populateReference(){
 		//populate the suggested reference for today
 		var d = new Date(); 
-		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J. & Hughes, P. (", d.getFullYear(),"). SHED Earth. <a href=\"http://www.shed.earth/shedcalc\">http://shed.earth</a>. <em>Accessed ", d.getDate(), "/", d.getMonth(), "/", d.getFullYear(), ".</em></p>"].join('');
+		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J., Hughes P. D., Kirkbride, M. & Barr, I. (", d.getFullYear(),"). SHED Earth. <a href=\"http://www.shed.earth/shedcalc\">http://shed.earth</a>. <em>Accessed ", d.getDate(), "/", d.getMonth()+1, "/", d.getFullYear(), ".</em></p>"].join('');
 	}
 </script>
 
@@ -34,8 +34,10 @@
 			</tbody>
 		</table>
 		
+<!-- 
 		<h3>Calibration Curve</h3>
 		<img src="../chart.png" alt="regression chart" />
+ -->
 		
 		<h3>Considerations</h3>
 		
@@ -47,7 +49,7 @@
 		surface<sup><a href="#References">2,3,4</a></sup>. The minimum sample size varies 
 		significantly depending on lithology<sup><a href="#References">4</a></sup>, 
 		ranging from just 6 R-Values (Feldspathic sandstone, α = 0·05) to >39 (Gabbro, 
-		Serpentinite, Greenstone, Conglomerate).  Given the sensitivity of the Schmidt 
+		Serpentinite, Greenstone, Conglomerate)<sup><a href="#References">3</a></sup>. Given the sensitivity of the Schmidt 
 		Hammer to surface discontinuities, moisture content and lichen, a sufficiently 
 		large dataset is necessary, typically >25 R-Values for weak and moderately strong 
 		rocks<sup><a href="#References">5</a></sup>. In our projects<sup>
@@ -56,7 +58,8 @@
 		underpin our calibration curve<sup><a href="#References">5</a></sup>. In addition, 
 		there is also uncertainty with regards 
 		to the number of surfaces per site. SHED-publications in the Mourne Mountains, Northern 
-		Ireland and Cumbria, NW England have sampled between 37 and 304 surfaces per site. This 
+		Ireland and Cumbria, NW England have sampled between 3<sup><a href="#References">7</a></sup> 
+		and 30<sup><a href="#References">4</a></sup> surfaces per site. This 
 		is ultimately dependent on the scale of your research project, whether it wants to 
 		constrain the de-glacial chronology of an entire mountain range
 		<sup><a href="#References">7</a></sup> or a single glacial 
@@ -68,10 +71,10 @@
 		and morphostratigraphic context of the dated landform or deposit
 		<sup><a href="#References">8</a></sup>. SH exposure ages 
 		relate to the emplacement or exhumation of surfaces and the onset of aerial weathering 
-		processes and thus may only provide a limiting age in some scenarios i.e. “this event 
-		occurred no later than X thousand years ago but potentially earlier”.  In many geomorphological 
+		processes and thus may only provide a limiting age in some scenarios <em>i.e. “this event 
+		occurred no later than X thousand years ago”</em>.  In many geomorphological 
 		settings, the onset of weathering may be contemporaneous with the dated event e.g. 
-		glacial retreat, rock slope failures, but this is not necessarily the case.</p>
+		glacial retreat, but this is not necessarily the case.</p>
 
 		<h5>Statistical Analysis</h5>
 		<p>Having carefully considered the geomorphological setting of your dated landform, 
@@ -120,14 +123,14 @@
 		<div id='ref'></div><script>populateReference();</script>
 		<h5>Source Code</h5>
 		<p>The source code for this website is available on <a href="https://github.com/jonnyhuck/shed-earth">GitHub</a>.</p>
-		<h5>References</h5>
+		<h5 id="References">References</h5>
 		<ol>
 			<li><a href="https://doi.org/10.1002/esp.2040">Viles, H., Goudie, A., Grab, S., & Lalley, J. (2011). The use of the Schmidt Hammer and Equotip for rock hardness assessment in geomorphology and heritage science: A comparative analysis. Earth Surface Processes and Landforms, 36(3), 320–333.</a></li>
 			<li><a href="http://dx.doi.org/10.1016/j.ijrmms.2004.12.002">Goktan, R.M., & Gunes, N. (2005). A comparative study of Schmidt hammer testing procedures with reference to rock cutting machine performance prediction. Int. J. Rock Mech. Min. Sci. 42, 466-472.</a></li>
 			<li><a href="http://doi.org/10.1002/esp.1851">Niedzielski, T., Mignoń, P., & Placek, A. (2009). A minimum sample size required from Schmidt hammer measurements, Earth Surface Processes and Landforms, 34,1713-1725.</a></li>
 			<li><a href="https://doi.org/10.1016/j.quageo.2016.02.002">Tomkins, M. D., Dortch, J. M., & Hughes, P. D. (2016). Schmidt Hammer exposure dating (SHED): Establishment and implications for the retreat of the last British Ice Sheet. Quaternary Geochronology, 33, 46–60.</a></li>
 			<li>Selby, M., 1980. A rock-mass strength classification for geomorphic purposes: with tests from Antarctica and New Zealand. Z. für Geomorphol. N. F. 24, 31-51.</li>
-			<li>Tomkins, M. D., Dortch, J. M., Huck, J. C., & Hughes P. D., (2017) Schmidt Hammer exposure dating (SHED): Calibration procedures, new data and an online calculator, in. prep.</li>
+			<li>Tomkins, M. D., Huck, J. J., Dortch, J. M., Hughes P. D., Kirkbride, M. & Barr, I. (2017) Schmidt Hammer exposure dating (SHED): Calibration procedures, new exposure age data and an online calculator, in. prep.</li>
 			<li><a href="https://doi.org/10.1002/jqs.2927">Barr, I. D., Roberson, S., Flood, R., & Dortch, J. (2017). Younger Dryas glaciers and climate in the Mourne Mountains, Northern Ireland. Journal of Quaternary Science, 32(1), 104–115.</a></li>
 			<li><a href="http://dx.doi.org/10.1016/j.quascirev.2014.11.020">Boston, C. M., Lukas, S., & Carr, S. J. (2015) A Younger Dryas plateau icefield in the Monadhliath, Scotland, and implications for regional palaeoclimate, Quaternary Science Reviews, 108, 139-162.</a></li>
 			<li><a href="http://dx.doi.org/10.1016/j.quascirev.2013.07.025">Dortch, J. M., Owen, L. A., & Caffee, M. W. (2013) Timing and climatic drivers for glaciation across semi-arid western Himalayan-Tibetan orogen, Quaternary Science Reviews, 78, 188-208.</a></li>

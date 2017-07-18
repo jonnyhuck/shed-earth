@@ -12,7 +12,7 @@
 	function populateReference(){
 		//populate the suggested reference for today
 		var d = new Date(); 
-		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J. & Hughes, P. (", d.getFullYear(),"). SHED Earth. <a href=\"http://www.shed.earth/shedcalc\">http://shed.earth</a>. <em>Accessed ", d.getDate(), "/", d.getMonth(), "/", d.getFullYear(), ".</em></p>"].join('');
+		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J., Hughes P. D., Kirkbride, M. & Barr, I. (", d.getFullYear(),"). SHED Earth. <a href=\"http://www.shed.earth/shedcalc\">http://shed.earth</a>. <em>Accessed ", d.getDate(), "/", d.getMonth()+1, "/", d.getFullYear(), ".</em></p>"].join('');
 	}
 
 	/**
@@ -112,9 +112,10 @@
 	<div class='underline'>	
 		<p>Welcome to SHED Earth. SHED refers to Schmidt Hammer Exposure Dating: a technique 
 		that provides a cost-effective solution for dating the exposure of granite surfaces. 
-		This can be used to constrain the timing of past events e.g. glacial retreat, which 
-		permits a better understanding of the links between climate and landscape evolution. 
-		The approach is based upon a study by Tomkins et al. (2016)<sup><a href="#References">9</a></sup>, 
+		This can be used to constrain the timing of past events, which permits a better 
+		understanding of the links between climate and landscape evolution.</p>
+		 
+		<p>The approach is based upon a study by Tomkins et al. (2016)<sup><a href="#References">1</a></sup>, 
 		in which a statistically significant relationship was observed between the exposure ages 
 		<em>(derived from terrestrial cosmogenic nuclide dating)</em>, and Schmidt Hammer rebound 
 		values (R-values) of 25 granitic surfaces from NW England and Scotland. These data indicate 
@@ -123,9 +124,21 @@
 		the rock. The technique has been demonstrated to be of comparable accuracy and precision 
 		to ages derived from terrestrial cosmogenic nuclide dating, but without the significant 
 		expense that goes along with the use of such techniques, making it useful for researchers 
-		and students alike. This dataset has recently been updated with new exposure ages from 
-		the Holocene and Younger Dryas5 and is now applicable over the timescale 0.8 - 22.5 
-		thousand years ago.</p>
+		and students alike. This dataset has recently been updated with 27 additional exposure ages from 
+		across Scotland and Ireland<sup><a href="#References">2</a></sup> and is now applicable over 
+		the timescale 0.8 - 23.8 thousand years ago, almost the entirety of British-Irish Ice Sheet 
+		retreat from its maximum extent.</p>
+		
+		<h3>Calibration Curve</h3>
+		<img src="./chart.png" alt="regression chart" />
+		
+		<small><p>This is the latest calibration curve for the British Isles and is based on 52 
+		TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent 
+		Lm scaling scheme<sup><a href="#References">3,4</a></sup>, the Loch Lomond production rate
+		<sup><a href="#References">5</a></sup> and assuming 0 mm ka<sup>1</sup> erosion. For full 
+		details, see Tomkins et al. (2017)<sup><a href="#References">2</a></sup>. It is anticipated that as 
+		new calibration curves are constructed in similar well-dated regions, they will be made 
+		available for use on this site.</p></small>
 		
 		<h3>Data Input</h3>
 		<form action="{% url 'shedcalc:results' %}" method="post" onsubmit="return validateForm()">
@@ -140,9 +153,10 @@
 			per surface to ensure statistically significant results, the tool will also 
 			operate on smaller sample sizes. This tool performs instrument and age calibration 
 			(see below) and returns calibrated R-Values and Schmidt Hammer exposure ages with 
-			1σ and 2σ uncertainties for each sampled surface. Data should be pasted into the 
+			1σ uncertainties for each sampled surface. Data should be pasted into the 
 			below box in tab-delimited format, which is most easily achieved by copying it 
-			directly out of a spreadsheet. The column order should be <strong>name latitude 
+			directly out of a spreadsheet (<a href="../downloads/shed-earth-sample-format.xlsx">download example here</a>). 
+			The column order should be <strong>name latitude 
 			longitude</strong> followed by the R-values (recommended 30) for that surface 
 			<em>(click the <strong>Load Demo Values</strong> button at the bottom of this 
 			form for an example)</em>.</p></small>
@@ -150,37 +164,35 @@
 			<label for='tabdata'>R Values:</label>
 			<textarea id='tabdata' name='tabdata' class='u-full-width' ></textarea><br/>
 			
-			<h5>Calibration Values</h5>
-			<small><p>Users should account for R-value drift following use using a suitable surface 
-			before and after sampling. Previous studies have advocated the use of the Proceq 
-			test anvil<sup><a href="#References">1</a>,<a href="#References">2</a></sup>. 
-			Test anvils are constructed with vertically guided impact points 
-			made of steel as hard as that of the plunger tip3 and thus amplify the variance 
-			between pre- and post-use calibration and the variance between different Schmidt 
-			Hammers<sup><a href="#References">4</a></sup>. An implicit assumption in this 
-			calibration procedure is that the difference (%) between the specified anvil 
-			standard and the recorded average is consistent throughout the operational range 
-			of the Schmidt Hammer. However, this is not supported by evidence
-			<sup><a href="#References">5</a></sup> as the difference between Schmidt Hammers 
-			as recorded using the test anvil is not maintained throughout the tools operational 
-			range but decreases significantly as the surface R-Value decreases. As a result, 
-			this method over-estimates R-Values for surface typically tested by Quaternary 
-			researchers<sup><a href="#References">5</a></sup>.</p>
-			<p>For very hard rock surface (R-Values: 70+), the test anvil method may be more 
-			effective as variation between Schmidt Hammers as recorded on the anvil is probably 
-			representative of variability on sampled rock surfaces. However, for the vast 
-			majority of rock surfaces tested by Quaternary researchers (R-Values: ≤ 60), the 
-			anvil method will significantly overestimate R-values
-			<sup><a href="#References">5</a></sup>. Thus, users should perform instrument 
-			calibration using a surface of sufficient size<sup><a href="#References">6</a></sup>, 
-			that is free of surface discontinuities<sup><a href="#References">7</a></sup> and 
-			lichen<sup><a href="#References">8</a></sup> and that is easily accessible. Users 
-			should input pre- and post-calibration values for their chosen surface and input their 
-			raw R-value data in chronological order (related to the time of sampling). R-Values 
-			will be corrected assuming linear R-Value drift9 based on the variance between pre- 
-			and post-calibration values and the number of individual R-Values. This procedure is 
-			most effective when periods between calibration tests are short
-			<sup><a href="#References">4</a></sup>.</p></small>
+			<h5>Instrument Calibration Values</h5>
+			<small><p>In order to ensure that the Schmidt Hammer is functioning correctly and 
+			yielding the same R-value on an identical rock surface, even after hundreds or 
+			thousands of impacts<sup><a href="#References">6</a></sup>, users should test their Schmidt Hammer using a suitable 
+			surface before and after sampling. Previous studies have advocated the use of the Proceq 
+			test anvil<sup><a href="#References">6,7</a></sup>. An implicit assumption in the test anvil calibration procedure is 
+			that the difference (%) between the specified anvil standard and the recorded average 
+			is consistent throughout the operational range of the Schmidt Hammer i.e. a 20% R-value 
+			difference between two Schmidt Hammers as recorded using the test anvil should also be 
+			replicated on a range of natural rock surfaces. However, this is not supported by evidence<sup><a href="#References">2</a></sup> 
+			as the difference between Schmidt Hammers as recorded using the test anvil is not maintained 
+			throughout the tools’ operational range but decreases significantly as the surface 
+			R-Value decreases. As a result, this method over-estimates R-Values for surfaces typically 
+			tested by Quaternary researchers<sup><a href="#References">2</a></sup>.</p> 
+			
+			<p>For very hard rock surfaces (R-Values: ≥ 70), the test 
+			anvil method may be more effective, as variation between Schmidt Hammers as recorded on 
+			the anvil is probably representative of variability on sampled rock surfaces. However, 
+			for the vast majority of rock surfaces tested by Quaternary researchers (R-Values: ≤ 60), 
+			the anvil method will significantly overestimate R-values<sup><a href="#References">2</a></sup>. Thus, users should perform 
+			instrument calibration using a calibration surface which is within the range of their 
+			ample data and that is of sufficient size<sup><a href="#References">8</a></sup>, 
+			that is free of surface discontinuities<sup><a href="#References">9</a></sup> 
+			and lichen<sup><a href="#References">10</a></sup> and that is easily accessible. Users should input pre- and post-calibration 
+			values for their chosen surface and input their raw R-value data in chronological order 
+			(related to the time of sampling). R-Values will be corrected assuming linear R-Value 
+			drift<sup><a href="#References">1</a></sup> based on the variance between pre- and post-calibration values and the number 
+			of individual R-Values. This procedure is most effective when periods between calibration tests are short<sup><a href="#References">11</a></sup>.
+			</p></small>
 			
 			<label for='before'>Pre-Calibration Value:</label>
 			<input type="text"  id='before' name='before'></input><br/>
@@ -188,30 +200,29 @@
 			<label for='after'>Post-Calibration Value:</label>
 			<input type="text"  id='after' name='after'></input><br/>
 	
-			<h5>Mean R Value for Calibration Boulder</h5>
-			<small><p>Users who have tested their Schmidt Hammer using the University of Manchester 
-			calibration boulder<sup><a href="#References">10</a></sup> should input their mean 
-			R-Value here. A correction factor (%) is applied to all user R-Values. We recommend that 
-			users who wish to apply our regional calibration curve to undated landforms should perform 
-			calibration using the University of Manchester calibration boulder as variance 
-			between Schmidt Hammers is possible<sup><a href="#References">4</a></sup>. In addition, 
-			this calibration procedure generates more realistic uncertainties than previous test 
-			anvil methods5 and incorporates operator variance through choice of sampling location
-			<sup><a href="#References">5</a>,<a href="#References">11</a></sup>.</p>
+			<h5>Age Calibration Value</h5>
+			<small><p>The goal of SHED-Earth is to encourage researchers and students to test 
+			and use our calibration curve on undated landforms and compare results with independent 
+			dating methods (TCN, <sup>14</sup>C, OSL), in order to evaluate its effectiveness. As such, the standardisation 
+			of different Schmidt Hammers<sup><a href="#References">11</a></sup> and different user strategies
+			<sup><a href="#References">12</a></sup> to a verifiable standard (e.g. University of Manchester calibration boulder) 
+			is necessary to minimise potential errors in SHED age estimates.</p>
+			
+			<p>Users who have tested their Schmidt Hammer using the University of Manchester 
+			calibration boulder<sup><a href="#References">13</a></sup> should input their mean R-Value here. A correction factor (%) 
+			is applied to all user R-Values.</p>
+			
 			<p>Users who have not completed age calibration using the University of Manchester 
 			calibration boulder should use the default value (R-Value: 48.08 ± 0.82). This is the 
-			mean R-value generated by the Proceq N-type Schmidt Hammer used to generate the 
-			original calibration curve<sup><a href="#References">9</a></sup>. As such, no 
-			correction for variance between different Schmidt Hammers will be made. This may be 
-			appropriate if users have calibrated their Schmidt Hammer using one of the 115 
-			boulder or bedrock surfaces reported in previous publications
-			<sup><a href="#References">5</a>,<a href="#References">9</a></sup> although 
-			we advocate caution with this approach<sup><a href="#References">10</a></sup>. 
-			Calibration using the University of Manchester calibration boulder ensures that 
-			user R-Values are standardised to the regional calibration curve. Although variance 
-			between Schmidt Hammers is usually small for surfaces with R-Values of ≤ 60, variance 
-			can exceed ~10% for older Schmidt Hammers<sup><a href="#References">5</a></sup> and 
-			should be accounted for. Users can contact 
+			mean R-value generated by the Proceq N-type Schmidt Hammer used to generate the original 
+			calibration curve<sup><a href="#References">1</a></sup>. As such, no correction for variance between different Schmidt 
+			Hammers or between users will be made. This may be appropriate if users have calibrated 
+			their Schmidt Hammer using one of the 125 boulder or bedrock surfaces reported in 
+			previous publications<sup><a href="#References">1,2</a></sup> although we advocate 
+			caution with this approach<sup><a href="#References">13</a></sup>. Although 
+			variance between Schmidt Hammers is usually small for surfaces with R-Values of ≤ 60, 
+			variance can exceed ~10% for older Schmidt Hammers and should be accounted for
+			<sup><a href="#References">2</a></sup>. Users can contact 
 			<script type="text/javascript" language="javascript">
 				<!--
 				// Email obfuscator script 2.1 by Tim Williams, University of Arizona
@@ -265,7 +276,7 @@
 			<label for='boulder'>Mean R Value (Boulder):</label>
 			<input type="text"  id='boulder' name='boulder' value="48.08" ></input><br/>
 	
-			<input class="button-primary" type="submit" value="Calculate" ></input>
+			<input id="calculate" class="button-primary" type="submit" value="Calculate" ></input>
 			
 			<h5>Demo Data</h5>
 			<small><p>If you would like to have a go with the website but do not have data 
@@ -283,17 +294,19 @@
 		
 		<h5 id="References">References</h5>
 		<ol>
-			<li><a href="https://www.proceq.com/compare/schmidt-rebound-hammers">Testing anvil Euro "N/NR/ND/L/LR/LD" (310 09 040).</a></li>
+			<li><a href="https://doi.org/10.1016/j.quageo.2016.02.002">Tomkins, M. D., Dortch, J. M., & Hughes, P. D. (2016). Schmidt Hammer exposure dating (SHED): Establishment and implications for the retreat of the last British Ice Sheet. Quaternary Geochronology, 33, 46–60.</a></li>
+			<li>Tomkins, M. D., Huck, J. J., Dortch, J. M., Hughes P. D., Kirkbride, M. & Barr, I. (2017) Schmidt Hammer exposure dating (SHED): Calibration procedures, new exposure age data and an online calculator, in. prep.</li>
+			<li><a href="https://doi.org/10.1016/j.quascirev.2012.09.002">Fabel, D., Ballantyne, C. K., & Xu, S. (2012). Trimlines, blockfields, mountain-top erratics and the vertical dimensions of the last British–Irish Ice Sheet in NW Scotland. Quaternary Science Reviews, 55, 91-102.</a></li>
+			<li><a href="https://doi.org/10.1016/0012-821X(91)90220-C">Lal, D. (1991). Cosmic ray labeling of erosion surfaces: in situ nuclide production rates and erosion models. Earth and Planetary Science Letters, 104(2-4), 424-439.</a></li>
+			<li><a href="http://dx.doi.org/10.1029/2000JB900181">Stone, J. O. (2000). Air pressure and cosmogenic isotope production. Journal of Geophysical Research: Solid Earth, 105(B10), 23753-23759.</a></li>
 			<li><a href="https://doi.org/10.1016/j.quageo.2016.08.009">Winkler, S., & Matthews, J. A. (2016). Inappropriate instrument calibration for Schmidt-hammer exposure-age dating (SHD) – A comment on Dortch et al., Quaternary Geochronology 35 (2016), 67–68. Quaternary Geochronology, 36, 102–103.</a></li>
-			<li><a href="https://doi.org/10.1007/978-3-319-07713-0">Aydin, A. (2009). The ISRM Suggested Methods for Rock Characterization, Testing and Monitoring: 2007-2014. Int. J. Rock Mech. Min. Sci., 46, 627–634.</a></li>
-			<li>McCarroll, D. (1987). The Schmidt hammer in geomorphology: five sources of instrument error. Br. Geomorphol. Res. Group Tech. Bull., 36, 16–27.</li>
-			<li>Tomkins, M. D., Dortch, J. M., Huck, J. C., & Hughes P. D. (2017) Schmidt Hammer exposure dating (SHED): Calibration procedures, new data and an online calculator, in. prep.</li>
+			<li><a href="https://www.proceq.com/compare/schmidt-rebound-hammers">Testing anvil Euro "N/NR/ND/L/LR/LD" (310 09 040).</a></li>
 			<li><a href="https://doi.org/10.1002/esp.402">Sumner, P., & Nel, W. (2002). The effect of rock moisture on Schmidt hammer rebound: Tests on rock samples from Marion Island and South Africa. Earth Surface Processes and Landforms, 27(10), 1137–1142.</a></li>
 			<li><a href="https://doi.org/10.1002/esp.3290080311">Williams, R. B. G., & Robinson, D. A. (1983). The effect of surface texture on the determination of the surface hardness of rock using the schmidt hammer. Earth Surface Processes and Landforms, 8(3), 289–292.</a></li>
 			<li><a href="https://doi.org/10.1111/j.1468-0459.2008.00346.x">Matthews, J. A., & Owen, G. (2008). Endolithic lichens, rapid biological weathering and schmidt hammer r-values on recently exposed rock surfaces: Storbreen glacier foreland, jotunheimen, Norway. Geografiska Annaler, Series A: Physical Geography, 90(4), 287–297.</a></li>
-			<li><a href="https://doi.org/10.1016/j.quageo.2016.02.002">Tomkins, M. D., Dortch, J. M., & Hughes, P. D. (2016). Schmidt Hammer exposure dating (SHED): Establishment and implications for the retreat of the last British Ice Sheet. Quaternary Geochronology, 33, 46–60.</a></li>
-			<li><a href="https://doi.org/10.1016/j.quageo.2016.06.001">Dortch, J. M., Hughes, P. D., & Tomkins, M. D. (2016). Schmidt hammer exposure dating (SHED): Calibration boulder of Tomkins et al. (2016). Quaternary Geochronology, 35, 67–68.</a></li>
+			<li>McCarroll, D. (1987). The Schmidt hammer in geomorphology: five sources of instrument error. Br. Geomorphol. Res. Group Tech. Bull., 36, 16–27.</li>
 			<li><a href="https://doi.org/10.1002/esp.2040">Viles, H., Goudie, A., Grab, S., & Lalley, J. (2011). The use of the Schmidt Hammer and Equotip for rock hardness assessment in geomorphology and heritage science: A comparative analysis. Earth Surface Processes and Landforms, 36(3), 320–333.</a></li>
+			<li><a href="https://doi.org/10.1016/j.quageo.2016.06.001">Dortch, J. M., Hughes, P. D., & Tomkins, M. D. (2016). Schmidt hammer exposure dating (SHED): Calibration boulder of Tomkins et al. (2016). Quaternary Geochronology, 35, 67–68.</a></li>			
 		</ol>
 	</div>
 </div>

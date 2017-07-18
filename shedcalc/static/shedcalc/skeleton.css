@@ -151,6 +151,10 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
   h6 { font-size: 1.5rem; }
 }
 
+h3 {
+	margin-top: 4rem;
+}
+
 p {
   margin-top: 0; }
 
@@ -257,6 +261,13 @@ textarea {
   min-height: 65px;
   padding-top: 6px;
   padding-bottom: 6px; }
+  
+/* added by jonny */
+textarea {
+  margin-bottom: 5rem; 
+}  
+
+  
 input[type="email"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
@@ -341,7 +352,7 @@ button,
 .button {
   margin-bottom: 1rem; }
 input,
-textarea,
+/* textarea, */
 select,
 fieldset {
   margin-bottom: 1.5rem; }
