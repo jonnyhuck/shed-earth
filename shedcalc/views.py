@@ -56,11 +56,13 @@ def calc(request):
 		o = {'name': names[i], 'lat': lats[i], 'lng': lngs[i], 'mean': round(means[i], sf), 
 			'mad': round(mads[i], sf), 'age': round(ages[i], sf), 'errors': round(error[i], sf)}
 		outputs.append(o)
-		
-
+	
+	# lower precision for the chart
+	ages2 = [round(i, 1) for i in ages]
+	errors2 = [round(i, 1) for i in error]
 	
 	# prepare context to pass it to the template
-	context = {'outputs': outputs, 'ages':str(ages).replace(" ", "").replace("[", "").replace("]", ""), 'errors':str(error).replace(" ", "").replace("[", "").replace("]", "")}
+	context = {'outputs': outputs, 'ages':str(ages2).replace(" ", "").replace("[", "").replace("]", ""), 'errors':str(errors2).replace(" ", "").replace("[", "").replace("]", "")}
 	
 	# render the template using the resulting data
 	return render(request, 'shedcalc/results.html', context)
@@ -178,8 +180,8 @@ def chart(request):
 def samples_chart(request):
 	
 	# get sample numbers
-	ages = [float(x) for x in request.GET['ages'].split(",")]
-	errors = [float(x) for x in request.GET['errors'].split(",")]
+	ages = [float(x) for x in request.GET['a'].split(",")]
+	errors = [float(x) for x in request.GET['e'].split(",")]
 	x = range(1, len(ages)+1)
 
 	
