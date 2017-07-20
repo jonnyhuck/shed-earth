@@ -56,10 +56,11 @@ def calc(request):
 		o = {'name': names[i], 'lat': lats[i], 'lng': lngs[i], 'mean': round(means[i], sf), 
 			'mad': round(mads[i], sf), 'age': round(ages[i], sf), 'errors': round(error[i], sf)}
 		outputs.append(o)
+		
 
 	
 	# prepare context to pass it to the template
-	context = {'outputs': outputs}
+	context = {'outputs': outputs, 'ages':str(ages).replace(" ", "").replace("[", "").replace("]", ""), 'errors':str(error).replace(" ", "").replace("[", "").replace("]", "")}
 	
 	# render the template using the resulting data
 	return render(request, 'shedcalc/results.html', context)
@@ -176,12 +177,11 @@ def chart(request):
 
 def samples_chart(request):
 	
-	print request.GET['output']
-	
 	# get sample numbers
-	x = []#range(1, len(ages)+1)
-	ages = []
-	error = []
+	ages = [float(x) for x in request.GET['ages'].split(",")]
+	errors = [float(x) for x in request.GET['errors'].split(",")]
+	x = range(1, len(ages)+1)
+
 	
  	# create a figure to draw on and add a subplot
 	fig = Figure()
@@ -192,7 +192,7 @@ def samples_chart(request):
 	
 	# points and error bars
 	ax.plot(x,ages,'k.', label='Sample Age Points', markersize=3.5)
-	ax.errorbar(x, ages, ecolor='k', yerr=error, fmt=" ", linewidth=0.5, capsize=0)
+	ax.errorbar(x, ages, ecolor='k', yerr=errors, fmt=" ", linewidth=0.5, capsize=0)
 	
 	# labels etc
 	ax.set_xlabel('Sample Order')
