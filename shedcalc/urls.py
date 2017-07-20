@@ -12,5 +12,8 @@ urlpatterns = [
     url(r'^results/$', views.calc, name='results'),
     
     # this gets the image
-    url(r'^chart.png$', views.chart, name='chart')
+    url(r'^chart.png$', views.chart, name='chart'),
+    
+	# this gets the image chart of the samples
+    url(r'^samples.png$', views.samples_chart, name='samples')
 ]

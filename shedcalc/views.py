@@ -11,7 +11,7 @@ def index(request):
 	The index page
 	"""
 	return render(request, 'shedcalc/index.html', {})
-
+	
 
 def calc(request):
 	"""
@@ -167,7 +167,38 @@ def chart(request):
 	textstr = '$R^2=%.2f%sp<%.2f$'%(r2, ", ", 0.01)
 	ax.text(0.03, 0.03, textstr, transform=ax.transAxes, fontsize=10)
 
-	###EXPERIMENTAL
+	# encode to send to browser
+	canvas=FigureCanvas(fig)
+	response=http.HttpResponse(content_type='image/png')
+	canvas.print_png(response)
+	return response
+	
+
+def samples_chart(request):
+	
+	print request.GET['output']
+	
+	# get sample numbers
+	x = []#range(1, len(ages)+1)
+	ages = []
+	error = []
+	
+ 	# create a figure to draw on and add a subplot
+	fig = Figure()
+	ax = fig.add_subplot(1,1,1)
+	
+	# set axis limit to stop y axis going to -5...
+	ax.set_ylim(0, 25)
+	
+	# points and error bars
+	ax.plot(x,ages,'k.', label='Sample Age Points', markersize=3.5)
+	ax.errorbar(x, ages, ecolor='k', yerr=error, fmt=" ", linewidth=0.5, capsize=0)
+	
+	# labels etc
+	ax.set_xlabel('Sample Order')
+	ax.set_ylabel('Age (ka)')
+	ax.set_title('Estimated Sample Ages')
+
 	# encode to send to browser
 	canvas=FigureCanvas(fig)
 	response=http.HttpResponse(content_type='image/png')
