@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from django import http
+from math import log10
 
 '''
 # If it whinges about matplotlib, do this:
@@ -204,7 +205,7 @@ def fitLineGB(data, prodrate):
 	return ages, errors
 	
 
-def fitLinePY(data, region, prodrate):
+def fitLinePY(data, prodrate):
 	"""
 	* For the Pyrenees 
 	*
@@ -234,8 +235,8 @@ def fitLinePY(data, region, prodrate):
 	elif prodrate == 2:	# CRONUS-calc default
 		y = np.array([13.955,12.547,4.218,5.311,11.674,8.413,14.013,13.82,15.046,16.006,16.378,12.191,8.557,12.327,11.815,21.445,21.256,22.691,23.324,24.219,11.081,12.227,12.202,21.589,51.107,43.909,42.589,20.836,17.393,17.581,17.613,21.368,23.812,19.232,22.536,25.692,18.377,19.908,18.617,19.127,17.021,16.724,15.372,17.077,17.191,16.874,16.826,15.542,17.752,17.933,8.988,18.62]) 
 	
-	
-	
+	# log the R values
+	x = np.array([log10(i) for i in x])
 	
 	# number of samples
 	n = len(x)				   
@@ -286,8 +287,13 @@ def fitLinePY(data, region, prodrate):
 	ages = []
 	errors = []
 	for d in data:
-		age = fit(d)
+		
+		# log the users point
+		d2 = log(d)
+		
+		#  calculate age and SE
+		age = fit(d2)
 		ages.append(age)
-		errors.append(fit(d) + tval * se_predict(d) - age)
+		errors.append(fit(d2) + tval * se_predict(d2) - age)
 		
 	return ages, errors
