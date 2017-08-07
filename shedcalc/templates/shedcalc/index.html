@@ -140,8 +140,20 @@
 		new calibration curves are constructed in similar well-dated regions, they will be made 
 		available for use on this site.</p></small>
 		
-		<h3>Data Input</h3>
 		<form action="{% url 'shedcalc:results' %}" method="post" onsubmit="return validateForm()">
+		
+			<h3>Production Rate</h3>
+			<p>Blah blah blah...</p>
+			<label for='prodrate'>Production Rate</label>
+			<select id='prodrate' name='prodrate'>
+				<!-- NB: These values need to be reflected in views.py -->
+				<option value='0' default>Loch Lomond</option>
+				<option value='1'>Glen Roy</option>
+				<option value='2'>CRONUS-calc default</option>
+			</select>
+		
+			<h3>Data Input</h3>
+		
 	
 			{% csrf_token %}
 					
