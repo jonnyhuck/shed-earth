@@ -105,6 +105,31 @@
 	
 		return true;
 	}
+	
+	
+	/**
+	 * Event handler for when the production rate select tool is changed
+	 */
+	function prodrate_select(selectedIndex){
+		// TODO: update chart
+	}
+	
+	
+	/**
+	 * Event handler for when the production rate select tool is changed
+	 */
+	function region_select(selectedIndex){
+	
+		// set to default production rate
+		if (selectedIndex == 0) {			// GB = Lock Lomond
+			document.getElementById('prodrate').value = 0;
+		} else if (selectedIndex == 1){		// PY = CRONUS
+			document.getElementById('prodrate').value = 2;
+		}
+		
+		//TODO: update chart
+	}
+	
 </script>
 
 <div class='container'>
@@ -129,23 +154,31 @@
 		the timescale 0.8 - 23.8 thousand years ago, almost the entirety of British-Irish Ice Sheet 
 		retreat from its maximum extent.</p>
 		
-		<h3>Calibration Curve</h3>
-		<img src="./chart.png" alt="regression chart" />
-		
-		<small><p>This is the latest calibration curve for the British Isles and is based on 52 
-		TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent 
-		Lm scaling scheme<sup><a href="#References">3,4</a></sup>, the Loch Lomond production rate
-		<sup><a href="#References">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full 
-		details, see Tomkins et al. (2017)<sup><a href="#References">2</a></sup>. It is anticipated that as 
-		new calibration curves are constructed in similar well-dated regions, they will be made 
-		available for use on this site.</p></small>
-		
 		<form action="{% url 'shedcalc:results' %}" method="post" onsubmit="return validateForm()">
 		
+			<h3>Calibration Curve</h3>
+			<label for='region'>Select Region:</label>
+			<select id='region' name='region' onchange="region_select(this.selectedIndex);">
+				<!-- NB: These values need to be reflected in views.py -->
+				<option value='0' default>British Isles</option>
+				<option value='1'>Pyrenees</option>
+			</select>
+			<!-- TODO: UPDATE CURVE ON CHANGE-->
+			<img src="./chart.png" alt="regression chart" />
+		
+			<small><p>This is the latest calibration curve for the British Isles and is based on 52 
+			TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent 
+			Lm scaling scheme<sup><a href="#References">3,4</a></sup>, the Loch Lomond production rate
+			<sup><a href="#References">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full 
+			details, see Tomkins et al. (2017)<sup><a href="#References">2</a></sup>. It is anticipated that as 
+			new calibration curves are constructed in similar well-dated regions, they will be made 
+			available for use on this site.</p></small>
+		
 			<h3>Production Rate</h3>
-			<p>Blah blah blah...</p>
-			<label for='prodrate'>Production Rate</label>
-			<select id='prodrate' name='prodrate'>
+			<small><p>Blah blah blah...</p></small>
+			<label for='prodrate'>Select Production Rate:</label>
+			<!-- TODO: UPDATE CURVE ON CHANGE-->
+			<select id='prodrate' name='prodrate' onchange="prodrate_select(this.selectedIndex);">
 				<!-- NB: These values need to be reflected in views.py -->
 				<option value='0' default>Loch Lomond</option>
 				<option value='1'>Glen Roy</option>
@@ -153,8 +186,7 @@
 			</select>
 		
 			<h3>Data Input</h3>
-		
-	
+
 			{% csrf_token %}
 					
 			<h5>R Values</h5>

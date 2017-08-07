@@ -17,6 +17,9 @@ def calc(request):
 	"""
 	The results page (calculates the result...)
 	"""
+
+	# get which region (calibration curve) we are using
+	region = int(request.POST['region'])
 	
 	# get which production rate was used
 	prodrate = int(request.POST['prodrate'])
@@ -46,8 +49,11 @@ def calc(request):
 	for d in calibratedValues:
 		mads.append(getRowMAD(d))
  	
- 	# calculate the ages and errors
- 	ages, error = fitLine(means, prodrate)
+ 	# calculate the ages and errors based upon selected region
+ 	if region == 0:
+	 	ages, error = fitLineGB(means, prodrate)
+	elif region == 1:
+ 		ages, error = fitLinePY(means, prodrate)
  	
  	# number of decimal places
  	sf = 3
