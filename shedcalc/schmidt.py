@@ -287,7 +287,7 @@ def fitLinePY(data, prodrate):
 	for d in data:
 		
 		# log the users point
-		d2 = log(d)
+		d2 = log10(d)
 		
 		#  calculate age and SE
 		age = fit(d2)
