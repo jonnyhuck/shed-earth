@@ -2,6 +2,9 @@
 .DS_Store
 */.DS_Store
 
+# git merge backup files
+*.orig
+
 # QGIS Plugin Stuff
 help/
 scripts/
