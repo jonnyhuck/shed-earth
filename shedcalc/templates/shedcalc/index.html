@@ -110,24 +110,16 @@
 	/**
 	 * Event handler for when the production rate select tool is changed
 	 */
-	function prodrate_select(selectedIndex){
-		// TODO: update chart
-	}
-	
-	
-	/**
-	 * Event handler for when the production rate select tool is changed
-	 */
 	function region_select(selectedIndex){
-	
-		// set to default production rate
+			
+		// set to default production rate and update the chart
 		if (selectedIndex == 0) {			// GB = Lock Lomond
 			document.getElementById('prodrate').value = 0;
+			document.getElementById("localchart").src="./chartgb.png";
 		} else if (selectedIndex == 1){		// PY = CRONUS
 			document.getElementById('prodrate').value = 2;
+			document.getElementById("localchart").src="./chartpy.png";
 		}
-		
-		//TODO: update chart
 	}
 	
 </script>
@@ -163,8 +155,7 @@
 				<option value='0' default>British Isles</option>
 				<option value='1'>Pyrenees</option>
 			</select>
-			<!-- TODO: UPDATE CURVE ON CHANGE-->
-			<img src="./chartpy.png" alt="regression chart" />
+			<img id='localchart' src="./chartgb.png" alt="regression chart" />
 		
 			<small><p>This is the latest calibration curve for the British Isles and is based on 52 
 			TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent 
@@ -177,8 +168,7 @@
 			<h3>Production Rate</h3>
 			<small><p>Blah blah blah...</p></small>
 			<label for='prodrate'>Select Production Rate:</label>
-			<!-- TODO: UPDATE CURVE ON CHANGE-->
-			<select id='prodrate' name='prodrate' onchange="prodrate_select(this.selectedIndex);">
+			<select id='prodrate' name='prodrate'">
 				<!-- NB: These values need to be reflected in views.py -->
 				<option value='0' default>Loch Lomond</option>
 				<option value='1'>Glen Roy</option>
