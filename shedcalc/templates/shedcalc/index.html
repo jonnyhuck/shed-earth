@@ -149,6 +149,37 @@
 		<form action="{% url 'shedcalc:results' %}" method="post" onsubmit="return validateForm()">
 		
 			<h3>Calibration Curve</h3>
+			
+			<small><p>The calibration curve used in SHED calculations is region-specific.
+			It is therefore important that you select the curve that is suitable for the location 
+			in which your research is taking place, so that the appropriate curve may be selected. 
+			If you would like to submit an additional curve to SHED-Earth, in order to allow you to 
+			date samples from other regions of the world, please 
+			<script type="text/javascript" language="javascript">
+				<!--
+				// Email obfuscator script 2.1 by Tim Williams, University of Arizona
+				// Random encryption key feature coded by Andrew Moulden
+				// This code is freeware provided these four comment lines remain intact
+				// A wizard to generate this code is at http://www.jottings.com/obfuscator/
+				{ coded = "HW77GNS.7wHXPFr@Cwr7DzWi.HWFdGNr7Nz.Wd.2X"
+				  key = "p0hSYtW26OkiZDFNr3HyUf84wbBauExRdTgnesAmVCKGIo7jMl1XPc5qvz9JLQ"
+				  shift=coded.length
+				  link=""
+				  for (i=0; i<coded.length; i++) {
+					if (key.indexOf(coded.charAt(i))==-1) {
+					  ltr = coded.charAt(i)
+					  link += (ltr)
+					}
+					else {     
+					  ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
+					  link += (key.charAt(ltr))
+					}
+				  }
+				document.write("<a href='mailto:"+link+"'>get in touch</a>")
+				}
+				//-->
+			</script><noscript>get in touch</noscript>.</p></small>
+			
 			<label for='region'>Select Region:</label>
 			<select id='region' name='region' onchange="region_select(this.selectedIndex);">
 				<!-- NB: These values need to be reflected in views.py -->
@@ -156,21 +187,15 @@
 				<option value='1'>Pyrenees</option>
 			</select>
 			<img id='localchart' src="./chartgb.png" alt="regression chart" />
-			<small><p>This is the latest calibration curve for the British Isles and is based on 54 
+			
+			<!-- TODO: Update this text when the curve updates -->
+			<div id='cctext'><small><p>This is the latest calibration curve for the British Isles and is based on 54 
 			TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent 
 			Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Loch Lomond production rate
 			<sup><a href="#5">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full 
 			details, see Tomkins et al. (2017)<sup><a href="#2">2</a></sup>. It is anticipated that as 
 			new calibration curves are constructed in similar well-dated regions, they will be made 
-			available for use on this site.</p></small>
-		
-			<small><p>This is the latest calibration curve for the British Isles and is based on 52 
-			TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent 
-			Lm scaling scheme<sup><a href="#References">3,4</a></sup>, the Loch Lomond production rate
-			<sup><a href="#References">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full 
-			details, see Tomkins et al. (2017)<sup><a href="#References">2</a></sup>. It is anticipated that as 
-			new calibration curves are constructed in similar well-dated regions, they will be made 
-			available for use on this site.</p></small>
+			available for use on this site.</p></small></div>
 		
 			<h3>Production Rate</h3>
 			<small><p>The largest uncertainty involved in calculating TCN exposure ages is 
