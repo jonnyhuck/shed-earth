@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from django import http
+from math import log10
 
 '''
 # If it whinges about matplotlib, do this:
@@ -119,8 +120,10 @@ def getCalibratedValues(data, r):
 	return [[d * ac for d in r] for r in data]
 
 
-def fitLine(data, prodrate):
+def fitLineGB(data, prodrate):
 	"""
+	* For Great Britain
+	*
 	* Fit a curve to the data using a least squares 1st order polynomial fit 
 	* Based upon: 
 	*	http://central.scipy.org/item/50/1/line-fit-with-confidence-interval
@@ -198,5 +201,97 @@ def fitLine(data, prodrate):
 		age = fit(d)
 		ages.append(age)
 		errors.append(fit(d) + tval * se_predict(d) - age)
+		
+	return ages, errors
+	
+
+def fitLinePY(data, prodrate):
+	"""
+	* For the Pyrenees 
+	*
+	* Fit a curve to the data using a least squares 1st order polynomial fit 
+	* Based upon: 
+	*	http://central.scipy.org/item/50/1/line-fit-with-confidence-interval
+	*
+	* Useful info on how it works can be found here:
+	*	http://sciencefair.math.iit.edu/analysis/linereg/hand/
+	*
+	* TODO: Get rid of unused code (AFTER) the output image is done...
+	* TODO: Add third return for plot image
+	"""
+	
+	# one sigma (68%)
+	alpha = 0.32
+	
+	# calibration curve data
+	x = np.array([54.03368396,57.60061836,61.93426224,59.23447584,51.13453623,57.80160755,49.50158588,48.60176758,47.20191692,46.60348264,46.90370451,51.63763229,55.37151306,51.90476614,53.07176254,42.90448686,42.70464598,39.97118604,39.67132362,38.90473325,52.13989717,49.50644397,53.50719023,41.95006324,23.4094335,26.47745241,25.8106217,40.5837167,45.15249304,45.81963775,45.81983488,41.58484362,40.08435908,45.48693888,40.31814028,38.45079804,45.48751973,42.91986244,46.75516721,45.95498962,48.85656394,47.22265643,51.02469707,47.79000009,48.22375316,50.09155454,48.12411378,49.2582244,47.5242191,48.83552464,59.83627399,49.60264646])
+	
+	if prodrate == 0:	# Loch Lomond
+		y = np.array([13.577,12.203,4.106,5.171,11.351,8.179,13.634,13.446,14.645,15.582,15.945,11.856,8.319,11.99,11.488,21.303,21.115,22.541,23.171,24.058,10.778,11.891,11.866,21.446,50.732,43.619,42.31,20.697,17.277,17.464,17.496,21.226,23.656,19.104,22.389,25.521,18.254,19.775,18.493,18.999,16.908,16.614,15.27,16.963,17.077,16.762,16.714,15.438,17.633,17.458,8.738,18.125]) 
+	elif prodrate == 1:	# Glen Roy
+		y = np.array([12.666,11.37,3.842,4.828,10.583,7.617,12.72,12.543,13.675,14.56,14.902,11.052,7.75,11.175,10.713,19.907,19.729,21.075,21.669,22.502,10.05,11.083,11.058,20.041,47.188,40.813,39.605,19.339,16.151,16.325,16.354,19.836,22.131,17.85,20.936,23.863,17.061,18.477,17.283,17.753,15.807,15.531,14.267,15.859,15.966,15.669,15.624,14.425,16.482,16.316,8.142,16.939]) 
+	elif prodrate == 2:	# CRONUS-calc default
+		y = np.array([13.67,12.288,4.134,5.205,11.43,8.236,13.727,13.538,14.744,15.687,16.052,11.94,8.377,12.074,11.568,21.445,21.256,22.691,23.324,24.219,10.852,11.974,11.95,21.589,51.107,43.909,42.589,20.836,17.393,17.581,17.613,21.368,23.812,19.232,22.536,25.692,18.377,19.908,18.617,19.127,17.021,16.724,15.372,17.077,17.191,16.874,16.826,15.542,17.752,17.575,8.8,18.247]) 
+	
+	# log the R values
+	x = np.array([log10(i) for i in x])
+	
+	# number of samples
+	n = len(x)				   
+	
+	# intermediate values used later (sum(x^2) - sum(x)^2 / n)
+	Sxx = np.sum(x**2) - np.sum(x)**2 / n
+	Sxy = np.sum(x*y) - np.sum(x) * np.sum(y) / n	 
+	
+	# mean for each array
+	mean_x = np.mean(x)
+	mean_y = np.mean(y)
+
+	# line fit
+	b = Sxy / Sxx
+	a = mean_y - b * mean_x
+	
+	# fit function
+	fit = lambda xx: a + b * xx 
+	
+	# residuals
+	residuals = y - fit(x)
+	
+	# variation of the residuals
+	var_res = np.sum(residuals**2)/(n - 2)
+	
+	# standard deviation of the residuals
+	sd_res = np.sqrt(var_res)
+	
+	# standard errors for the line fit
+	se_b = sd_res / np.sqrt(Sxx)
+	se_a = sd_res * np.sqrt(np.sum(x**2) / (n*Sxx))
+	
+	# degrees of freedom
+	df = n - 2
+	
+	# appropriate t value						
+	tval = stats.t.isf(alpha / 2., df)	
+	
+	# confidence intervals
+	ci_a = a + tval * se_a * np.array([-1,1])
+	ci_b = b + tval * se_b * np.array([-1,1])
+	
+	# standard error functions
+	se_fit	   = lambda x: sd_res * np.sqrt(	1. / n + (x-mean_x)**2 / Sxx)
+	se_predict = lambda x: sd_res * np.sqrt(1 + 1. / n + (x-mean_x)**2 / Sxx)
+
+	# calculate ages and uncertainty to return
+	ages = []
+	errors = []
+	for d in data:
+		
+		# log the users point
+		d2 = log10(d)
+		
+		#  calculate age and SE
+		age = fit(d2)
+		ages.append(age)
+		errors.append(fit(d2) + tval * se_predict(d2) - age)
 		
 	return ages, errors
