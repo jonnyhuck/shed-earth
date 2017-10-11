@@ -117,11 +117,20 @@
 			document.getElementById('prodrate').value = 0;
 			document.getElementById("localchart").src="./chartgb.png";
 			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the British Isles and is based on 54 TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Loch Lomond production rate<sup><a href="#5">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full details, see Tomkins et al. (2017)<sup><a href="#2">2</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>';
+			document.getElementById('boulder').value = "48.08";
 		} else if (selectedIndex == 1){		// PY = CRONUS
 			document.getElementById('prodrate').value = 2;
 			document.getElementById("localchart").src="./chartpy.png";
 			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the Pyrenees and is based on 52 TCN dated surfaces from across the mountain range. These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the primary calibration dataset of Borchers et al. (2016)<sup><a href="#9">9</a></sup> and assuming 0 mm ka-1 erosion. For full details, see Tomkins et al. (2017b)<sup><a href="#18">18</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>'
+			document.getElementById('boulder').value = "52.6";
 		}
+	}
+	
+	/**
+	 * Populate the boulder box with a certain value
+	 */
+	function setRValue(val){
+		document.getElementById('boulder').value = val.toString();
 	}
 	
 </script>
@@ -192,7 +201,6 @@
 			</select>
 			<img id='localchart' src="./chartgb.png" alt="regression chart" />
 			
-			<!-- TODO: Update this text when the curve updates -->
 			<div id='cctext'><small><p>This is the latest calibration curve for the British Isles and is based on 54 
 			TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent 
 			Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Loch Lomond production rate
@@ -310,7 +318,7 @@
 			input their mean R-Value here. A correction factor (%) is applied to all user R-values.</p>
 			
 			<p>Users who have not completed age calibration using the University of Manchester 
-			calibration boulder should use the default value.As such, no correction for variance between 
+			calibration boulder should use the default value. As such, no correction for variance between 
 			different Schmidt Hammers or between users will be made. This may be appropriate if users have calibrated 
 			their Schmidt Hammer using one of the boulder or bedrock surfaces reported in 
 			previous publications<sup><a href="#1">1,2</a></sup> although we advocate 
@@ -370,6 +378,17 @@
 			
 			<label for='boulder'>Mean R Value (Boulder):</label>
 			<input type="text"  id='boulder' name='boulder' value="48.08" ></input><br/>
+			
+			<small><p>If you wish to load any of the default values into the <strong>Mean R Value (boulder)</strong> box, you can do so by clicking the link in the below table:</p></small>
+			<table>
+				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th></tr>
+				<tr><td>University of Manchester</td><td>British Isles</td><td><a href="javascript:void(0);" onclick='setRValue(48.08);'>48.08</a></td><td>±0.82</td><tr/>
+				<tr><td>Maladeta</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(52.60);'>52.60</a></td><td>±0.74</td><tr/>
+				<tr><td>Bassies</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(44.14);'>44.14</a></td><td>±0.60</td><tr/>
+				<tr><td>Carlit</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(48.67);'>48.67</a></td><td>±0.65</td><tr/>
+			<table>
+			
+			<hr>
 	
 			<input id="calculate" class="button-primary" type="submit" value="Calculate" ></input>
 			
