@@ -31,14 +31,15 @@ def calc(request):
 	# get before and after values
 	before = float(request.POST['before'])
 	after = float(request.POST['after'])
-	boulder = float(request.POST['boulder'])
+	boulderR = float(request.POST['boulder_r'])
+	boulderV = float(request.POST['boulder_v'])
 	
 	# calculate the drift factor and apply to cells
 	df = getDriftFactor(before, after, data)
 	correctedCells = applyDriftFactorToCells(df, data)
 
 	# calibrate values against our boulder
-	calibratedValues = getCalibratedValues(correctedCells, boulder)
+	calibratedValues = getCalibratedValues(correctedCells, boulderV, boulderR)
 	
 	# calculate the mean for each row
 	means = []

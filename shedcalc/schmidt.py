@@ -106,12 +106,11 @@ def getAgeCalibration(v, r):
 	return v/r
 
 
-def getCalibratedValues(data, r):
+def getCalibratedValues(data, v, r):
 	"""
 	multiply means by age calibration
 	"""
-	# TODO: get data from db
-	v = 48.08
+# 	v = 48.08
 	
 	# calculate age calibration
 	ac = getAgeCalibration(v, r)
