@@ -120,14 +120,14 @@
 			document.getElementById('prodrate').value = 0;
 			document.getElementById("localchart").src="./chartgb.png";
 			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the British Isles and is based on 54 TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Loch Lomond production rate<sup><a href="#5">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full details, see Tomkins et al. (2017)<sup><a href="#2">2</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>';
-			document.getElementById('boulder_r').value = "48.08";
 			document.getElementById('boulder_v').selectedIndex = 0;
+			setBoulder(0);
 		} else if (selectedIndex == 1){		// PY = CRONUS
 			document.getElementById('prodrate').value = 2;
 			document.getElementById("localchart").src="./chartpy.png";
 			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the Pyrenees and is based on 52 TCN dated surfaces from across the mountain range. These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the primary calibration dataset of Borchers et al. (2016)<sup><a href="#9">9</a></sup> and assuming 0 mm ka-1 erosion. For full details, see Tomkins et al. (2017b)<sup><a href="#18">18</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>'
-			document.getElementById('boulder_r').value = "52.6";
 			document.getElementById('boulder_v').selectedIndex = 1;
+			setBoulder(1);
 		}
 	}
 	
@@ -142,9 +142,14 @@
 	 * Update boulder R values to default on change of boulder
 	 */
 	function setBoulder(selectedIndex){
+	
 		//set the R Value for the default for the selected boulder
 		var rVals = [48.08, 52.60, 44.14, 48.67];
 		setRValue(rVals[selectedIndex]);
+		
+		//set the image for the selected boulder	
+		var imgs = ["manchester.png", "maladeta.png", "bassies.png", "carlit.png"];
+		document.getElementById("boulderimg").src = "/static/shedcalc/images/" + imgs[selectedIndex];
 	}
 	
 </script>
@@ -329,8 +334,8 @@
 			surfaces provided (R-Values: Maladeta = 52.60 ± 0.74; Bassies = 44.14 ± 0.60; and Carlit = 48.67 ± 0.65) and 
 			input their mean R-Value here. A correction factor (%) is applied to all user R-values.</p>
 			
-			<p>Users who have not completed age calibration using the University of Manchester 
-			calibration boulder should use the default value. As such, no correction for variance between 
+			<p>Users who have not completed age calibration using one of these age calibration surfaces 
+			should use the default value. As such, no correction for variance between 
 			different Schmidt Hammers or between users will be made. This may be appropriate if users have calibrated 
 			their Schmidt Hammer using one of the boulder or bedrock surfaces reported in 
 			previous publications<sup><a href="#1">1,2</a></sup> although we advocate 
@@ -396,16 +401,18 @@
 				<option value='48.67'>Carlit (Pyrenees)</option>
 			</select>
 			
+			<img id="boulderimg" src="" alt="Photograph of boulder location">		
+			
 			<label for='boulder'>Mean R Value (Boulder):</label>
 			<input type="text"  id='boulder_r' name='boulder_r' value="48.08" ></input><br/>
 			
-			<small><p>If you wish to load any of the default values into the <strong>Mean R Value (boulder)</strong> box, you can do so by clicking the link in the below table:</p></small>
+			<small><p>If you wish to load any of the default values into the <strong>Mean R Value (boulder)</strong> box, you can do so by clicking the link in the below table. Use the coordinate links to view the location on Google Maps.</p></small>
 			<table>
-				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th></tr>
-				<tr><td>University of Manchester</td><td>British Isles</td><td><a href="javascript:void(0);" onclick='setRValue(48.08);'>48.08</a></td><td>±0.82</td><tr/>
-				<tr><td>Maladeta</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(52.60);'>52.60</a></td><td>±0.74</td><tr/>
-				<tr><td>Bassies</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(44.14);'>44.14</a></td><td>±0.60</td><tr/>
-				<tr><td>Carlit</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(48.67);'>48.67</a></td><td>±0.65</td><tr/>
+				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th><th>Location (Lon,Lat)</th></tr>
+				<tr><td>University of Manchester</td><td>British Isles</td><td><a href="javascript:void(0);" onclick='setRValue(48.08);'>48.08</a></td><td>±0.82</td><td><a href="https://www.google.com/maps/search/?api=1&query=47.5951518,-122.3316393">...</a></td><tr/>
+				<tr><td>Maladeta</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(52.60);'>52.60</a></td><td>±0.74</td><td><a href="https://www.google.com/maps/search/?api=1&query=42.67894000,0.64960200">0.64960200, 42.67894000</a></td><tr/>
+				<tr><td>Bassies</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(44.14);'>44.14</a></td><td>±0.60</td><td><a href="https://www.google.com/maps/search/?api=1&query=42.74457700,1.46471300">1.46471300, 42.74457700</a></td><tr/>
+				<tr><td>Carlit</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(48.67);'>48.67</a></td><td>±0.65</td><td><a href="https://www.google.com/maps/search/?api=1&query=42.51446200,2.05129200">2.05129200, 42.51446200</a></td><tr/>
 			<table>
 			
 			<hr>
