@@ -119,13 +119,13 @@
 		if (selectedIndex == 0) {			// GB = Lock Lomond
 			document.getElementById('prodrate').value = 0;
 			document.getElementById("localchart").src="./chartgb.png";
-			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the British Isles and is based on 54 TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Loch Lomond production rate<sup><a href="#5">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full details, see Tomkins et al. (2017)<sup><a href="#2">2</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>';
+			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the British Isles and is based on 54 TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Loch Lomond production rate<sup><a href="#5">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full details, see Tomkins et al. (2018a)<sup><a href="#2">2</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>';
 			document.getElementById('boulder_v').selectedIndex = 0;
 			setBoulder(0);
 		} else if (selectedIndex == 1){		// PY = CRONUS
 			document.getElementById('prodrate').value = 2;
 			document.getElementById("localchart").src="./chartpy.png";
-			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the Pyrenees and is based on 52 TCN dated surfaces from across the mountain range. These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the primary calibration dataset of Borchers et al. (2016)<sup><a href="#9">9</a></sup> and assuming 0 mm ka-1 erosion. For full details, see Tomkins et al. (2017b)<sup><a href="#18">18</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>'
+			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the Pyrenees and is based on 52 TCN dated surfaces from across the mountain range. These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the primary calibration dataset of Borchers et al. (2016)<sup><a href="#9">9</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full details, see Tomkins et al. (2018b)<sup><a href="#18">18</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>'
 			document.getElementById('boulder_v').selectedIndex = 1;
 			setBoulder(1);
 		}
@@ -169,7 +169,7 @@
 		been updated with 29 additional exposure ages from across Scotland and Ireland<sup><a href="#2">2</a></sup> and is now 
 		applicable over the timescale 0.8 - 23.8 thousand years ago, covering the entire post-Last 
 		Glacial Maximum (LGM) history of the British-Irish Ice Sheet. In addition, a new curve has 
-		recently been made available for the Pyrenees<sup><a href="#1">1</a></sup>, based on 52 TCN dated surfaces 
+		recently been made available for the Pyrenees<sup><a href="#18">18</a></sup>, based on 52 TCN dated surfaces 
 		from across the mountain range. These new data confirm the accuracy and reproducibility of previous 
 		research<sup><a href="#1">1</a></sup> and demonstrate that this method can be applied 
 		successfully in contrasting climatic regimes. In addition, these studies show that equivalent 
@@ -267,8 +267,8 @@
 					
 			<h5>R Values</h5>
 			<small><p>Users should input raw R-value data in the format displayed below. 
-			Inputs include samples IDs and locations (latitude/longitude) which are stored 
-			in database for monitoring of site usage. User data (R-values and Schmidt Hammer 
+			Inputs include sample IDs and locations (latitude/longitude) which are stored 
+			in a database for monitoring of site usage. User data (R-values and Schmidt Hammer 
 			exposure ages) are not recorded. While we encourage users to record 30 R-values 
 			per surface to ensure statistically significant results, the tool will also 
 			operate on smaller sample sizes. This tool performs instrument and age calibration 
@@ -324,8 +324,8 @@
 			<small><p>The goal of SHED-Earth is to encourage researchers and students to test 
 			and use our calibration curve on undated landforms and compare results with independent 
 			dating methods (TCN, <sup>14</sup>C, OSL), in order to evaluate its effectiveness. As such, the standardisation 
-			of different Schmidt Hammers<sup><a href="#15">15</a></sup> and different user strategies
-			<sup><a href="#16">16</a></sup> to a verifiable standard (e.g. University of Manchester calibration boulder) 
+			of different Schmidt Hammers<sup><a href="#15">15</a></sup> and different user strategies<sup><a href="#16">16</a></sup> 
+			to a verifiable standard (e.g. University of Manchester calibration boulder) 
 			is necessary to minimise potential errors in SHED age estimates.</p>
 			
 			<p>For the British Isles SHED curve, users should test their Schmidt Hammer using the University of Manchester 
@@ -341,8 +341,8 @@
 			previous publications<sup><a href="#1">1,2</a></sup> although we advocate 
 			caution with this approach<sup><a href="#17">17</a></sup>. Although 
 			variance between Schmidt Hammers is usually small for surfaces with R-values of ≤ 60, 
-			variance can exceed ~10% for older Schmidt Hammers and should be accounted for
-			<sup><a href="#2">2</a></sup>. Users can contact 
+			variance can exceed ~10% for older Schmidt Hammers and should be accounted for<sup><a href="#2">2</a></sup>. 
+			Users can contact 
 			<script type="text/javascript" language="javascript">
 				<!--
 				// Email obfuscator script 2.1 by Tim Williams, University of Arizona
@@ -366,32 +366,7 @@
 				document.write("<a href='mailto:"+link+"'>Matt Tomkins</a>")
 				}
 				//-->
-			</script><noscript>Matt Tomkins</noscript> or 
-			<script type="text/javascript" language="javascript">
-				<!--
-				// Email obfuscator script 2.1 by Tim Williams, University of Arizona
-				// Random encryption key feature coded by Andrew Moulden
-				// This code is freeware provided these four comment lines remain intact
-				// A wizard to generate this code is at http://www.jottings.com/obfuscator/
-				{ coded = "tVheD.4ezlLq@OVDLqKhlKz.VL.ks"
-				  key = "h5xWkBY4ACRMmI8nzvb1FglLTejJ6qaUysHfQuNpdOG9DPiEXrw0ZSKtc2oV73"
-				  shift=coded.length
-				  link=""
-				  for (i=0; i<coded.length; i++) {
-					if (key.indexOf(coded.charAt(i))==-1) {
-					  ltr = coded.charAt(i)
-					  link += (ltr)
-					}
-					else {     
-					  ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
-					  link += (key.charAt(ltr))
-					}
-				  }
-				document.write("<a href='mailto:"+link+"'>Dr Jason Dortch</a>")
-				}
-				//-->
-			</script><noscript>Dr Jason Dortch.</noscript> at the University of Manchester 
-			for advice on age calibration.</p></small>
+			</script><noscript>Matt Tomkins</noscript> at the University of Manchester for advice on age calibration.</p></small>
 			
 			<label for='boulder_v'>Reference Boulder</label>
 			<select id='boulder_v' name='boulder_v' onchange='setBoulder(this.selectedIndex);'>
@@ -408,11 +383,18 @@
 			
 			<small><p>If you wish to load any of the default values into the <strong>Mean R Value (boulder)</strong> box, you can do so by clicking the link in the below table. Use the coordinate links to view the location on Google Maps.</p></small>
 			<table>
+<!-- 
 				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th><th>Location (Lon,Lat)</th></tr>
 				<tr><td>University of Manchester</td><td>British Isles</td><td><a href="javascript:void(0);" onclick='setRValue(48.08);'>48.08</a></td><td>±0.82</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=53.46667120,-2.23484069&basemap=terrain">-2.23484069, 53.46667120</a></td><tr/>
 				<tr><td>Maladeta</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(52.60);'>52.60</a></td><td>±0.74</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.67894000,0.64960200&basemap=terrain">0.64960200, 42.67894000</a></td><tr/>
 				<tr><td>Bassies</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(44.14);'>44.14</a></td><td>±0.60</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.74457700,1.46471300&basemap=terrain">1.46471300, 42.74457700</a></td><tr/>
 				<tr><td>Carlit</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(48.67);'>48.67</a></td><td>±0.65</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.51446200,2.05129200&basemap=terrain">2.05129200, 42.51446200</a></td><tr/>
+ -->
+ 				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th><th>Location (Lon,Lat)</th></tr>
+				<tr><td>University of Manchester</td><td>British Isles</td><td>48.08</td><td>±0.82</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=53.46667120,-2.23484069&basemap=terrain">-2.23484069, 53.46667120</a></td><tr/>
+				<tr><td>Maladeta</td><td>Pyrenees</td><td>52.60</td><td>±0.74</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.67894000,0.64960200&basemap=terrain">0.64960200, 42.67894000</a></td><tr/>
+				<tr><td>Bassies</td><td>Pyrenees</td><td>44.14</td><td>±0.60</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.74457700,1.46471300&basemap=terrain">1.46471300, 42.74457700</a></td><tr/>
+				<tr><td>Carlit</td><td>Pyrenees</td><td>48.67</td><td>±0.65</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.51446200,2.05129200&basemap=terrain">2.05129200, 42.51446200</a></td><tr/>
 			<table>
 			
 			<hr>
@@ -436,7 +418,7 @@
 		<h5>References</h5>
 		<ol>
 			<div id="1"><li><a href="https://doi.org/10.1016/j.quageo.2016.02.002">Tomkins, M. D., Dortch, J. M., & Hughes, P. D. (2016). Schmidt Hammer exposure dating (SHED): Establishment and implications for the retreat of the last British Ice Sheet. Quaternary Geochronology, 33, 46–60.</a></li></div>
-			<div id="2"><li>Tomkins, M. D., Huck, J. J., Dortch, J. M., Hughes P. D., Kirkbride, M. & Barr, I. (2017) Schmidt Hammer exposure dating (SHED): Calibration procedures, new exposure age data and an online calculator, in. prep.</li></div>
+			<div id="2"><li><a href="https://doi.org/10.1016/j.quageo.2017.12.003">Tomkins, M. D., Huck, J. J., Dortch, J. M., Hughes P. D., Kirkbride, M. & Barr, I. (2017) Schmidt Hammer exposure dating (SHED): Calibration procedures, new exposure age data and an online calculator. Quaternary Geochronology, 44, 55-62.</a></li></div>
 			<div id="3"><li><a href="https://doi.org/10.1016/0012-821X(91)90220-C">Lal, D. (1991). Cosmic ray labeling of erosion surfaces: in situ nuclide production rates and erosion models. Earth and Planetary Science Letters, 104(2-4), 424-439.</a></li></div>
 			<div id="4"><li><a href="http://dx.doi.org/10.1029/2000JB900181">Stone, J. O. (2000). Air pressure and cosmogenic isotope production. Journal of Geophysical Research: Solid Earth, 105(B10), 23753-23759.</a></li></div>
 			<div id="5"><li><a href="https://doi.org/10.1016/j.quascirev.2012.09.002">Fabel, D., Ballantyne, C. K., & Xu, S. (2012). Trimlines, blockfields, mountain-top erratics and the vertical dimensions of the last British–Irish Ice Sheet in NW Scotland. Quaternary Science Reviews, 55, 91-102.</a></li></div>
@@ -452,7 +434,7 @@
 			<div id="15"><li>McCarroll, D. (1987). The Schmidt hammer in geomorphology: five sources of instrument error. Br. Geomorphol. Res. Group Tech. Bull., 36, 16–27.</li></div>
 			<div id="16"><li><a href="https://doi.org/10.1002/esp.2040">Viles, H., Goudie, A., Grab, S., & Lalley, J. (2011). The use of the Schmidt Hammer and Equotip for rock hardness assessment in geomorphology and heritage science: A comparative analysis. Earth Surface Processes and Landforms, 36(3), 320–333.</a></li></div>
 			<div id="17"><li><a href="https://doi.org/10.1016/j.quageo.2016.06.001">Dortch, J. M., Hughes, P. D., & Tomkins, M. D. (2016). Schmidt hammer exposure dating (SHED): Calibration boulder of Tomkins et al. (2016). Quaternary Geochronology, 35, 67–68.</a></li></div>
-			<div id="18"><li>Tomkins, M. D., Dortch, J.D., Hughes, P.D., Huck, J.J., Stimson, A., Delmas, A., Calvet, M., and Pallàs, R. (2017) Rapid, inexpensive dating of glacial landforms in the Pyrenees, Geology, In Submission</li></div>
+			<div id="18"><li><a href="https://doi.org/10.1017/qua.2018.12">‘Tomkins, M. D., Dortch, J.D., Hughes, P.D., Huck, J.J., Stimson, A., Delmas, A., Calvet, M., & Pallàs, R. (2017) Rapid age assessment of glacial landforms in the Pyrenees using Schmidt hammer exposure dating (SHED). Quaternary Research, In Press.</a></li></div>
 		</ol>
 	</div>
 </div>
