@@ -10,7 +10,7 @@
 	 * Write a reference for today's date into the ref div
 	 */
 	function populateReference(){
-		var d = new Date(); 
+		var d = new Date();
 		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J., Hughes P. D., Kirkbride, M. & Barr, I. (", d.getFullYear(),"). SHED Earth. <a href=\"http://www.shed.earth/shedcalc\">http://shed.earth</a>. <em>Accessed ", d.getDate(), "/", d.getMonth()+1, "/", d.getFullYear(), ".</em></p>"].join('');
 	}
 
@@ -18,55 +18,55 @@
 	 * Populate the form with a sample dataset
 	 */
 	function loadDemoValues(){
-	
+
 		//load user inputs
 		document.getElementById('tabdata').value = ["CLU-A	57.1044	-3.678	62.00126984	62.00253968	60.00380952	58.00507937	58.00634921	55.00761905	53.00888889	53.01015873	54.01142857	62.01269841	62.01396825	56.0152381	60.01650794	56.01777778	56.01904762	58.02031746	61.0215873	60.02285714	60.02412698	64.02539683	64.02666667	64.02793651	55.02920635	58.03047619	55.03174603	57.03301587	61.03428571	65.03555556	64.0368254	64.03809524","CLU-B	57.1036	-3.6796	62.11555556	62.1168254	58.11809524	60.11936508	62.12063492	60.12190476	58.1231746	60.12444444	60.12571429	62.12698413	62.12825397	58.12952381	60.13079365	56.13206349	66.13333333	60.13460317	62.13587302	55.13714286	56.1384127	59.13968254	58.14095238	64.14222222	61.14349206	54.1447619	56.14603175	56.14730159	67.14857143	60.14984127	60.15111111	59.15238095","CLU-C	57.1037	-3.6794	58.15365079	55.15492063	53.15619048	58.15746032	61.15873016	56.16	60.16126984	50.16253968	55.16380952	54.16507937	53.16634921	60.16761905	55.16888889	61.17015873	54.17142857	54.17269841	54.17396825	56.1752381	62.17650794	55.17777778	54.17904762	62.18031746	60.1815873	52.18285714	62.18412698	59.18539683	62.18666667	57.18793651	58.18920635	60.19047619","SRAM-A	56.63416	-4.77468	44.13374917	48.1460281	42.12787951	47.14322068	42.12808936	40.12208979	40.12218972	50.15286206	46.14074801	46.14086292	50.15323678	47.14415999	50.1534866	43.13210589	44.13528804	45.13847519	44.13550788	50.15411114	44.13572772	48.14818651	42.12976812	50.15461077	46.14235682	42.13008289	42.13018781	48.14890599	43.13350237	46.1429314	52.16170453	48.14938563","SRAM-B	56.63369	-4.77309	52.15027294	40.1156945	43.124479	42.12168907	44.1275937	42.12189891	44.12781354	48.13955286	48.13967278	46.13396799	47.13699775	44.12836314	42.12263337	48.14027234	42.12284322	46.13465749	46.1347724	46.13488732	45.1320674	45.13217982	40.1175931	47.1382893	49.14429637	44.12968217	50.14749101	50.14761591	45.13296674	45.13307916	48.14207101	47.13922861","SRAM-C	56.63368	-4.7734	40.11859236	50.14836536	49.14552047	46.13672596	50.14874009	44.1310012	43.12813132	43.12823874	46.13730054	50.14936463	44.13155079	40.11969156	45.13476542	48.14386969	43.12899068	46.13810495	43.12920553	52.15637845	45.13543992	40.12049097	44.13264998	48.14482898	52.15702797	42.12693521	50.15123825	45.13622684	50.15148807	40.12129038	48.14566837	47.14275102","BBC-A	56.62167	-4.78079	43.21772042	43.21782784	42.212867	50.25353801	43.21815011	38.19287875	54.27422575	50.25403764	40.20333004	48.24411596	38.1933534	44.2239928	39.1986365	40.20382967	44.22432256	46.23463395	37.18881974	40.20422938	36.18389637	40.20442923	45.2300953	48.2455549	46.23543836	48.24579472	40.20492886	52.26653743	36.18461584	44.22575151	46.23612785	44.22597134","BBC-B	56.62139	-4.77957	52.27887835	39.20925619	48.25766599	39.20945105	53.284771	42.22577251	38.2043653	48.25826555	42.22608728	38.20465009	40.21552107	50.26952625	42.22650697	40.21582085	40.21592078	45.24302329	46.24853873	40.21622056	44.23795253	36.19477837	36.1948683	42.22745128	52.28173625	47.25476364	40.21692004	40.21701997	46.24968788	52.28238577	40.21731975	46.25003263","BBC-C	56.62107	-4.78055	48.26102352	49.26658392	40.21771945	37.20148293	40.21791931	46.25072212	38.2072132	44.240041	43.23469294	50.27302368	36.19666698	50.27327349	36.19684685	47.25711191	44.24081043	50.27377312	48.26294211	41.22469881	39.21383532	51.27975821	42.23049404	40.21961806	46.25267568	40.21981791	43.23641168	42.23101865	40.22011769	40.22021762	53.29192075	44.24245922","CR-A	54.51355	-2.58822	35.40237451	41.83949372	42.9126334	30.03907589	32.18497328	34.33090388	32.18547151	39.6957221	35.40456671	35.40484073	30.04070343	39.69695106	43.98885379	36.47884401	45.06245018	38.62525623	39.69848725	30.04233097	40.77205043	34.33462398	32.18895909	32.18920821	37.55436687	31.11671622	27.89796147	40.77425924	40.77457478	40.77489032	36.48307893	35.41032122","CR-B	54.51476	-2.58823	36.60165689	32.29582872	36.60222155	40.9086808	37.67933874	36.60306853	30.143936	34.4504783	35.52732977	38.75738596	36.60448018	34.45154118	43.06475863	43.06509078	43.06542293	39.83582345	36.60617415	43.06641938	32.30006365	36.60702113	29.07050569	35.53089209	33.37776211	36.60815045	30.14812111	45.22253042	36.60899743	43.06974089	38.76306574	34.45632416","CR-C	54.51491	-2.58754	43.1444749	32.35860529	30.20159744	32.35910352	34.51664281	29.12364157	40.98914442	43.14679996	36.6750623	32.3605982	32.36084731	39.91201892	38.83361464	45.30623251	40.99166877	36.67703859	36.67732092	32.3625911	43.15045362	30.20555004	32.36333844	37.75751882	35.60022034	36.67929722	40.9948242	43.15277868	40.99545529	38.83809869	40.99608638	37.75984388","BF-A	55.13041	-8.28036	31.24670	38.30253	35.27875	30.23901	28.22316	23.18338	30.23928	40.31916	34.27139	23.18366	34.27159	26.20777	32.25581	42.33587	39.31200	31.24809	24.19214	21.16819	32.25638	28.22442	35.28063	24.19250	20.16048	34.27291	26.20878	29.23295	31.24911	41.32959	24.19300	22.17698","BF-B	55.13022	-8.28048	21.16900	30.24152	37.29799	24.19336	22.17731	20.16125	43.34682	33.26626	40.32286	18.14534	28.22617	20.16161	39.31526	24.19408	33.26695	34.27514	20.16191	22.17817	40.32406	31.25124	31.25133	22.17843	34.27585	37.30030	22.17863	34.27616	33.26813	45.36577	19.15449	30.24403","BF-C	55.13085	-8.28102	21.17088	34.27677	28.22801	26.21180	24.19558	20.16304	36.29359	33.26922	44.35909	30.24492	20.16334	35.28595	31.25336	26.21258	33.26991	25.20455	30.24555	40.32752	31.25392	40.32776	41.33607	33.27060	32.26249	24.19694	35.28731	24.19708	18.14787	34.27941	32.26307	20.16448"].join("\n");
 		document.getElementById('before').value = "48";
 		document.getElementById('after').value = "47.5";
-		
+
 		//set to gb
 		region_select(0);
 	}
-	
+
 	/**
 	 * Verify form values before submitting for calculation
 	 */
-	function validateForm(){	
-		
+	function validateForm(){
+
 		//verify that there is some data
-		if (document.getElementById('tabdata').value == "") { 
+		if (document.getElementById('tabdata').value == "") {
 			alert("Please paste some data into the R Values box");
-			return false; 
+			return false;
 		}
-		
+
 		//get the number of columns and rows in the R-values data
 		var cols = document.getElementById('tabdata').value.split(/\r?\n/)[0].split('\t').length
 		var rows = document.getElementById('tabdata').value.split(/\r?\n/).length
-		
+
 		//verify that there are at least 4 columns
 		if(cols < 5) {
 			alert(["You need at least 4 tab-separated columns in the R Values box\nAt the moment I can see",rows.toString(),"rows and",cols.toString(),"columns"].join(' '));
-			return false; 
+			return false;
 		}
-		
+
 		//verify that it all columns but the first are numeric
 		for(var i = 0; i < rows; i++){
-			
+
 			//extract the rows
 			rowData = document.getElementById('tabdata').value.split(/\r?\n/);
-			
+
 			//loop through columns: skip the first row as this CAN be a string
-			for(var j = 1; j < cols; j++){	
-		
+			for(var j = 1; j < cols; j++){
+
 				// extract the columns from the current row
 				colData = rowData[i].split('\t');
-				
+
 				if(colData.length == cols){
-			
+
 					//verify numeric
 					if(isNaN(colData[j])){
 						alert(["R-values need to be numeric\nNon-numeric value found at row", i+1, "column", j+1].join(' '));
-						return false; 
+						return false;
 					}
 				} else {
 					alert(["Warning: row", i, "has", colData.length, "columns, expected", cols].join(" "));
@@ -74,47 +74,47 @@
 				}
 			}
 		}
-		
+
 		//verify that there is some data
-		if (document.getElementById('before').value == "") { 
+		if (document.getElementById('before').value == "") {
 			alert("Please enter some data into the Pre-Calibration Value box");
-			return false; 
+			return false;
 		}
 		//verify that it is numeric
-		if (isNaN(document.getElementById('before').value)) { 
+		if (isNaN(document.getElementById('before').value)) {
 			alert("The Pre-Calibration Value must be numeric");
-			return false; 
+			return false;
 		}
 		//verify that there is some data
-		if (document.getElementById('after').value == "") { 
+		if (document.getElementById('after').value == "") {
 			alert("Please enter some data into the Post-Calibration Value box");
-			return false; 
+			return false;
 		}
 		//verify that it is numeric
-		if (isNaN(document.getElementById('after').value)) { 
+		if (isNaN(document.getElementById('after').value)) {
 			alert("The Post-Calibration Value must be numeric");
-			return false; 
+			return false;
 		}
 		//verify that there is some data
-		if (document.getElementById('boulder_r').value == "") { 
+		if (document.getElementById('boulder_r').value == "") {
 			alert("please enter some data into the Mean R Value (Boulder) box");
-			return false; 
+			return false;
 		}
 		//verify that it is numeric
-		if (isNaN(document.getElementById('boulder_r').value)) { 
+		if (isNaN(document.getElementById('boulder_r').value)) {
 			alert("The Mean R Value (Boulder) must be numeric");
-			return false; 
+			return false;
 		};
-	
+
 		return true;
 	}
-	
-	
+
+
 	/**
 	 * Event handler for when the production rate select tool is changed
 	 */
 	function region_select(selectedIndex){
-			
+
 		// set to default production rate and update the chart
 		if (selectedIndex == 0) {			// GB = Lock Lomond
 			document.getElementById('prodrate').value = 0;
@@ -130,63 +130,63 @@
 			setBoulder(1);
 		}
 	}
-	
+
 	/**
 	 * Populate the boulder box with a certain value
 	 */
 	function setRValue(val){
 		document.getElementById('boulder_r').value = val.toString();
 	}
-	
+
 	/**
 	 * Update boulder R values to default on change of boulder
 	 */
 	function setBoulder(selectedIndex){
-	
+
 		//set the R Value for the default for the selected boulder
 		var rVals = [48.08, 52.60, 44.14, 48.67];
 		setRValue(rVals[selectedIndex]);
-		
-		//set the image for the selected boulder	
+
+		//set the image for the selected boulder
 		var imgs = ["manchester.png", "maladeta.png", "bassies.png", "carlit.png"];
 		document.getElementById("boulderimg").src = "/static/shedcalc/images/" + imgs[selectedIndex];
 	}
-	
+
 </script>
 
 <div class='container'>
 	<h1>SHED Earth</h1>
-	<div class='underline'>	
-		<p>Welcome to SHED Earth. SHED refers to Schmidt Hammer Exposure Dating: a technique 
-		that provides a cost-effective solution for dating the exposure of granite surfaces. 
-		This can be used to constrain the timing of past events, which permits a better 
+	<div class='underline'>
+		<p>Welcome to SHED Earth. SHED refers to Schmidt Hammer Exposure Dating: a technique
+		that provides a cost-effective solution for dating the exposure of granite surfaces.
+		This can be used to constrain the timing of past events, which permits a better
 		understanding of the links between climate and landscape evolution.</p>
-		 
-		<p>The approach is based upon a study by Tomkins et al. (2016)<sup><a href="#1">1</a></sup>, 
-		in which a statistically significant relationship was observed between the exposure ages 
-		<em>(derived from terrestrial cosmogenic nuclide dating)</em>, and Schmidt Hammer rebound 
-		values (R-values) of 25 granitic surfaces from NW England and Scotland. This has recently 
-		been updated with 29 additional exposure ages from across Scotland and Ireland<sup><a href="#2">2</a></sup> and is now 
-		applicable over the timescale 0.8 - 23.8 thousand years ago, covering the entire post-Last 
-		Glacial Maximum (LGM) history of the British-Irish Ice Sheet. In addition, a new curve has 
-		recently been made available for the Pyrenees<sup><a href="#18">18</a></sup>, based on 52 TCN dated surfaces 
-		from across the mountain range. These new data confirm the accuracy and reproducibility of previous 
-		research<sup><a href="#1">1</a></sup> and demonstrate that this method can be applied 
-		successfully in contrasting climatic regimes. In addition, these studies show that equivalent 
-		time-dependent weathering of granite surfaces can occur over significant spatial scales for 
-		regions of similar climate. The technique has been demonstrated to be of comparable accuracy 
-		and precision to ages derived from TCN dating, but without the significant expense that goes 
+
+		<p>The approach is based upon a study by Tomkins et al. (2016)<sup><a href="#1">1</a></sup>,
+		in which a statistically significant relationship was observed between the exposure ages
+		<em>(derived from terrestrial cosmogenic nuclide dating)</em>, and Schmidt Hammer rebound
+		values (R-values) of 25 granitic surfaces from NW England and Scotland. This has recently
+		been updated with 29 additional exposure ages from across Scotland and Ireland<sup><a href="#2">2</a></sup> and is now
+		applicable over the timescale 0.8 - 23.8 thousand years ago, covering the entire post-Last
+		Glacial Maximum (LGM) history of the British-Irish Ice Sheet. In addition, a new curve has
+		recently been made available for the Pyrenees<sup><a href="#18">18</a></sup>, based on 52 TCN dated surfaces
+		from across the mountain range. These new data confirm the accuracy and reproducibility of previous
+		research<sup><a href="#1">1</a></sup> and demonstrate that this method can be applied
+		successfully in contrasting climatic regimes. In addition, these studies show that equivalent
+		time-dependent weathering of granite surfaces can occur over significant spatial scales for
+		regions of similar climate. The technique has been demonstrated to be of comparable accuracy
+		and precision to ages derived from TCN dating, but without the significant expense that goes
 		along with the use of such techniques, making it useful for researchers and students alike.</p>
-		
+
 		<form action="{% url 'shedcalc:results' %}" method="post" onsubmit="return validateForm()">
-		
+
 			<h3>Calibration Curve</h3>
-			
+
 			<small><p>The calibration curve used in SHED calculations is region-specific.
-			It is therefore important that you select the curve that is suitable for the location 
-			in which your research is taking place, so that the appropriate curve may be selected. 
-			If you would like to submit an additional curve to SHED-Earth, in order to allow you to 
-			date samples from other regions of the world, please 
+			It is therefore important that you select the curve that is suitable for the location
+			in which your research is taking place, so that the appropriate curve may be selected.
+			If you would like to submit an additional curve to SHED-Earth, in order to allow you to
+			date samples from other regions of the world, please
 			<script type="text/javascript" language="javascript">
 				<!--
 				// Email obfuscator script 2.1 by Tim Williams, University of Arizona
@@ -202,7 +202,7 @@
 					  ltr = coded.charAt(i)
 					  link += (ltr)
 					}
-					else {     
+					else {
 					  ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
 					  link += (key.charAt(ltr))
 					}
@@ -211,7 +211,7 @@
 				}
 				//-->
 			</script><noscript>get in touch</noscript>.</p></small>
-			
+
 			<label for='region'>Select Region:</label>
 			<select id='region' name='region' onchange="region_select(this.selectedIndex);">
 				<!-- NB: These values need to be reflected in views.py -->
@@ -219,137 +219,138 @@
 				<option value='1'>Pyrenees</option>
 			</select>
 			<img id='localchart' src="./chartgb.png" alt="regression chart" />
-			
-			<div id='cctext'><small><p>This is the latest calibration curve for the British Isles and is based on 54 
-			TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent 
-			Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Rannoch Moor production rate
-			<sup><a href="#5">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full 
-			details, see Tomkins et al. (2017)<sup><a href="#2">2</a></sup>. It is anticipated that as 
-			new calibration curves are constructed in similar well-dated regions, they will be made 
-			available for use on this site.</p></small></div>
-		
-			<h3>Production Rate</h3>
-			<small><p>The largest uncertainty involved in calculating TCN exposure ages is 
-			the choice of production rate. As the SHED calibration is based on TCN exposure ages, 
-			production rate controls the slope of the calibration curve and in turn, influences SH 
-			exposure age estimates. As such, we provide three production rates for calculating SH 
-			exposure ages.</p> 
 
-			<!-- 
-			<p>For the British Isles SHED curve, the default calibration dataset is the Loch Lomond production 
+			<div id='cctext'><small><p>This is the latest calibration curve for the British Isles and is based on 54
+			TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent
+			Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Rannoch Moor production rate
+			<sup><a href="#5">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full
+			details, see Tomkins et al. (2017)<sup><a href="#2">2</a></sup>. It is anticipated that as
+			new calibration curves are constructed in similar well-dated regions, they will be made
+			available for use on this site.</p></small></div>
+
+			<h3>Production Rate</h3>
+			<small><p>The largest uncertainty involved in calculating TCN exposure ages is
+			the choice of production rate. As the SHED calibration is based on TCN exposure ages,
+			production rate controls the slope of the calibration curve and in turn, influences SH
+			exposure age estimates. As such, we provide three production rates for calculating SH
+			exposure ages.</p>
+
+			<!--
+			<p>For the British Isles SHED curve, the default calibration dataset is the Loch Lomond production
 			rate (LLPR; 4.02 ± 0.18 atoms g<sup>-1</sup> a<sup>-1</sup>; Fabel et al., 2012<sup><a href="#5">5</a></sup>),
-			which is based on <sup>10</sup>Be concentrations from erratic boulders on the terminal moraine of the Younger Dryas 
-			Loch Lomond glacier advance, the timing of which is independently constrained by <sup>14</sup>C 
-			ages derived from a varve chronology (MacLeod et al., 2011<sup><a href="#6">6</a></sup>). This calibration dataset 
+			which is based on <sup>10</sup>Be concentrations from erratic boulders on the terminal moraine of the Younger Dryas
+			Loch Lomond glacier advance, the timing of which is independently constrained by <sup>14</sup>C
+			ages derived from a varve chronology (MacLeod et al., 2011<sup><a href="#6">6</a></sup>). This calibration dataset
 			is the most widely used local production rate in the British Isles.</p>
 			-->
-			<p>For the British Isles SHED curve, the default calibration dataset is the Rannoch Moor production rate 
-			(RM-PR; 3.95 ± 0.11 atoms g<sup>-1</sup> a<sup>-1</sup>; Putnam et al., 2019<sup><a href="#5">5</a></sup>), which is based on <sup>10</sup>Be 
-			concentrations from boulders deposited on a glacial moraine belt on Rannoch Moor, central Scottish Highlands, 
-			the timing of which is independently constrained by proximal <sup>14</sup>C ages (Bromley et al., 2014<sup><a href="#19">19</a></sup>) and 
+			<p>For the British Isles SHED curve, the default calibration dataset is the Rannoch Moor production rate
+			(RM-PR; 3.95 ± 0.11 atoms g<sup>-1</sup> a<sup>-1</sup>; Putnam et al., 2019<sup><a href="#5">5</a></sup>), which is based on <sup>10</sup>Be
+			concentrations from boulders deposited on a glacial moraine belt on Rannoch Moor, central Scottish Highlands,
+			the timing of which is independently constrained by proximal <sup>14</sup>C ages (Bromley et al., 2014<sup><a href="#19">19</a></sup>) and
 			<sup>14</sup>C ages from outlet glaciers of the West Highland ice field."
-			
-			<p>Secondly, we provide the Glen Roy production rate (GRPR; 4.31 ± 0.21 atoms g<sup>-1</sup> a<sup>-1</sup>; 
-			Small and Fabel, 2015<sup><a href="#7">7</a></sup>) which is derived from assumed ages of tephra within a floating 
-			varve chronology (MacLeod et al., 2015<sup><a href="#8">8</a></sup>). Collectively, the LLPR and GRPR provide upper 
-			and lower limits on the range of local production rates from the British Isles.</p> 
 
-			<p>Finally, we provide the primary calibration dataset of Borchers et al. (2016)<sup><a href="#9">9</a></sup> 
-			which is derived from global calibration sites and is the default production rate 
+			<p>Secondly, we provide the Glen Roy production rate (GRPR; 4.31 ± 0.21 atoms g<sup>-1</sup> a<sup>-1</sup>;
+			Small and Fabel, 2015<sup><a href="#7">7</a></sup>) which is derived from assumed ages of tephra within a floating
+			varve chronology (MacLeod et al., 2015<sup><a href="#8">8</a></sup>). Collectively, the LLPR and GRPR provide upper
+			and lower limits on the range of local production rates from the British Isles.</p>
+
+			<p>Finally, we provide the primary calibration dataset of Borchers et al. (2016)<sup><a href="#9">9</a></sup>
+			which is derived from global calibration sites and is the default production rate
 			for both the <a href="http://cronus.cosmogenicnuclides.rocks/2.0/">CRONUS Web Calculator</a>
-			and the online calculators formerly known as the <a href="http://hess.ess.washington.edu/math/">CRONUS-Earth 
-			online calculators</a>. . This is the default calibration dataset for the Pyrenees SHED curve as no local 
+			and the online calculators formerly known as the <a href="http://hess.ess.washington.edu/math/">CRONUS-Earth
+			online calculators</a>. . This is the default calibration dataset for the Pyrenees SHED curve as no local
 			production rates are available.</p></small>
-			
+
 			<label for='prodrate'>Select Production Rate:</label>
 			<select id='prodrate' name='prodrate'>
 				<option value='0' default>Rannoch Moor</option>
 				<option value='1'>Glen Roy</option>
 				<option value='2'>CRONUS-calc default</option>
+				<option value='3'>Loch Lomond</option>
 			</select>
-		
+
 			<h3>Data Input</h3>
 
 			{% csrf_token %}
-					
+
 			<h5>R Values</h5>
-			<small><p>Users should input raw R-value data in the format displayed below. 
-			Inputs include sample IDs and locations (latitude/longitude) which are stored 
-			in a database for monitoring of site usage. User data (R-values and Schmidt Hammer 
-			exposure ages) are not recorded. While we encourage users to record 30 R-values 
-			per surface to ensure statistically significant results, the tool will also 
-			operate on smaller sample sizes. This tool performs instrument and age calibration 
-			(see below) and returns calibrated R-values and Schmidt Hammer exposure ages with 
-			1σ uncertainties for each sampled surface. Data should be pasted into the 
-			box below in tab-delimited format, which is most easily achieved by copying it 
-			directly out of a spreadsheet (<a href="http://huckg.is/shed-earth/shed-earth-sample-format.xlsx">download example here</a>). 
-			The column order should be <strong>name latitude 
-			longitude</strong> followed by the R-values (recommended 30) for that surface 
-			<em>(click the <strong>Load Demo Values</strong> button at the bottom of this 
+			<small><p>Users should input raw R-value data in the format displayed below.
+			Inputs include sample IDs and locations (latitude/longitude) which are stored
+			in a database for monitoring of site usage. User data (R-values and Schmidt Hammer
+			exposure ages) are not recorded. While we encourage users to record 30 R-values
+			per surface to ensure statistically significant results, the tool will also
+			operate on smaller sample sizes. This tool performs instrument and age calibration
+			(see below) and returns calibrated R-values and Schmidt Hammer exposure ages with
+			1σ uncertainties for each sampled surface. Data should be pasted into the
+			box below in tab-delimited format, which is most easily achieved by copying it
+			directly out of a spreadsheet (<a href="http://huckg.is/shed-earth/shed-earth-sample-format.xlsx">download example here</a>).
+			The column order should be <strong>name latitude
+			longitude</strong> followed by the R-values (recommended 30) for that surface
+			<em>(click the <strong>Load Demo Values</strong> button at the bottom of this
 			form for an example)</em>.</p></small>
-			
+
 			<label for='tabdata'>R Values:</label>
 			<textarea id='tabdata' name='tabdata' class='u-full-width' ></textarea><br/>
-			
+
 			<h5>Instrument Calibration Values</h5>
-			<small><p>In order to ensure that the Schmidt Hammer is functioning correctly and 
-			yielding the same R-value on an identical rock surface, even after hundreds or 
-			thousands of impacts<sup><a href="#10">10</a></sup>, users should test their Schmidt Hammer using a suitable 
-			surface before and after sampling. Previous studies have advocated the use of the Proceq 
-			test anvil<sup><a href="#10">10,11</a></sup>. An implicit assumption in the test anvil calibration procedure is 
-			that the difference (%) between the specified anvil standard and the recorded average 
-			is consistent throughout the operational range of the Schmidt Hammer i.e. a 20% R-value 
-			difference between two Schmidt Hammers as recorded using the test anvil should also be 
-			replicated on a range of natural rock surfaces. However, this is not supported by evidence<sup><a href="#2">2</a></sup> 
-			as the difference between Schmidt Hammers as recorded using the test anvil is not maintained 
-			throughout the tools’ operational range but decreases significantly as the surface 
-			R-value decreases. As a result, this method over-estimates R-values for surfaces typically 
-			tested by Quaternary researchers<sup><a href="#2">2</a></sup>.</p> 
-			
-			<p>For very hard rock surfaces (R-values: ≥ 70), the test 
-			anvil method may be more effective, as variation between Schmidt Hammers as recorded on 
-			the anvil is probably representative of variability on sampled rock surfaces. However, 
-			for the vast majority of rock surfaces tested by Quaternary researchers (R-values: ≤ 60), 
-			the anvil method will significantly overestimate R-values<sup><a href="#2">2</a></sup>. Thus, users should perform 
-			instrument calibration using a calibration surface which is within the range of their 
-			sample data and that is of sufficient size<sup><a href="#12">12</a></sup>, 
-			that is free of surface discontinuities<sup><a href="#13">13</a></sup> 
-			and lichen<sup><a href="#14">14</a></sup> and that is easily accessible. Users should input pre- and post-calibration 
-			values for their chosen surface and input their raw R-value data in chronological order 
-			(related to the time of sampling). R-values will be corrected assuming linear R-value 
-			drift<sup><a href="#1">1</a></sup> based on the variance between pre- and post-calibration values and the number 
+			<small><p>In order to ensure that the Schmidt Hammer is functioning correctly and
+			yielding the same R-value on an identical rock surface, even after hundreds or
+			thousands of impacts<sup><a href="#10">10</a></sup>, users should test their Schmidt Hammer using a suitable
+			surface before and after sampling. Previous studies have advocated the use of the Proceq
+			test anvil<sup><a href="#10">10,11</a></sup>. An implicit assumption in the test anvil calibration procedure is
+			that the difference (%) between the specified anvil standard and the recorded average
+			is consistent throughout the operational range of the Schmidt Hammer i.e. a 20% R-value
+			difference between two Schmidt Hammers as recorded using the test anvil should also be
+			replicated on a range of natural rock surfaces. However, this is not supported by evidence<sup><a href="#2">2</a></sup>
+			as the difference between Schmidt Hammers as recorded using the test anvil is not maintained
+			throughout the tools’ operational range but decreases significantly as the surface
+			R-value decreases. As a result, this method over-estimates R-values for surfaces typically
+			tested by Quaternary researchers<sup><a href="#2">2</a></sup>.</p>
+
+			<p>For very hard rock surfaces (R-values: ≥ 70), the test
+			anvil method may be more effective, as variation between Schmidt Hammers as recorded on
+			the anvil is probably representative of variability on sampled rock surfaces. However,
+			for the vast majority of rock surfaces tested by Quaternary researchers (R-values: ≤ 60),
+			the anvil method will significantly overestimate R-values<sup><a href="#2">2</a></sup>. Thus, users should perform
+			instrument calibration using a calibration surface which is within the range of their
+			sample data and that is of sufficient size<sup><a href="#12">12</a></sup>,
+			that is free of surface discontinuities<sup><a href="#13">13</a></sup>
+			and lichen<sup><a href="#14">14</a></sup> and that is easily accessible. Users should input pre- and post-calibration
+			values for their chosen surface and input their raw R-value data in chronological order
+			(related to the time of sampling). R-values will be corrected assuming linear R-value
+			drift<sup><a href="#1">1</a></sup> based on the variance between pre- and post-calibration values and the number
 			of individual R-values. This procedure is most effective when periods between calibration tests are short<sup><a href="#15">15</a></sup>.
 			</p></small>
-			
+
 			<label for='before'>Pre-Calibration Value:</label>
 			<input type="text"  id='before' name='before'></input><br/>
-	
+
 			<label for='after'>Post-Calibration Value:</label>
 			<input type="text"  id='after' name='after'></input><br/>
-	
+
 			<h5>Age Calibration Value</h5>
-			<small><p>The goal of SHED-Earth is to encourage researchers and students to test 
-			and use our calibration curve on undated landforms and compare results with independent 
-			dating methods (TCN, <sup>14</sup>C, OSL), in order to evaluate its effectiveness. As such, the standardisation 
-			of different Schmidt Hammers<sup><a href="#15">15</a></sup> and different user strategies<sup><a href="#16">16</a></sup> 
-			to a verifiable standard (e.g. University of Manchester calibration boulder) 
+			<small><p>The goal of SHED-Earth is to encourage researchers and students to test
+			and use our calibration curve on undated landforms and compare results with independent
+			dating methods (TCN, <sup>14</sup>C, OSL), in order to evaluate its effectiveness. As such, the standardisation
+			of different Schmidt Hammers<sup><a href="#15">15</a></sup> and different user strategies<sup><a href="#16">16</a></sup>
+			to a verifiable standard (e.g. University of Manchester calibration boulder)
 			is necessary to minimise potential errors in SHED age estimates.</p>
-			
-			<p>For the British Isles SHED curve, users should test their Schmidt Hammer using the University of Manchester 
-			calibration boulder (R-Value = 48.08 ± 0.82)<sup><a href="#17">17</a></sup> and input their mean R-Value here. 
-			For the Pyrenees SHED curve, users should test their Schmidt Hammer using one of the three calibration 
-			surfaces provided (R-Values: Maladeta = 52.60 ± 0.74; Bassies = 44.14 ± 0.60; and Carlit = 48.67 ± 0.65) and 
+
+			<p>For the British Isles SHED curve, users should test their Schmidt Hammer using the University of Manchester
+			calibration boulder (R-Value = 48.08 ± 0.82)<sup><a href="#17">17</a></sup> and input their mean R-Value here.
+			For the Pyrenees SHED curve, users should test their Schmidt Hammer using one of the three calibration
+			surfaces provided (R-Values: Maladeta = 52.60 ± 0.74; Bassies = 44.14 ± 0.60; and Carlit = 48.67 ± 0.65) and
 			input their mean R-Value here. A correction factor (%) is applied to all user R-values.</p>
-			
-			<p>Users who have not completed age calibration using one of these age calibration surfaces 
-			should use the default value. As such, no correction for variance between 
-			different Schmidt Hammers or between users will be made. This may be appropriate if users have calibrated 
-			their Schmidt Hammer using one of the boulder or bedrock surfaces reported in 
-			previous publications<sup><a href="#1">1,2</a></sup> although we advocate 
-			caution with this approach<sup><a href="#17">17</a></sup>. Although 
-			variance between Schmidt Hammers is usually small for surfaces with R-values of ≤ 60, 
-			variance can exceed ~10% for older Schmidt Hammers and should be accounted for<sup><a href="#2">2</a></sup>. 
-			Users can contact 
+
+			<p>Users who have not completed age calibration using one of these age calibration surfaces
+			should use the default value. As such, no correction for variance between
+			different Schmidt Hammers or between users will be made. This may be appropriate if users have calibrated
+			their Schmidt Hammer using one of the boulder or bedrock surfaces reported in
+			previous publications<sup><a href="#1">1,2</a></sup> although we advocate
+			caution with this approach<sup><a href="#17">17</a></sup>. Although
+			variance between Schmidt Hammers is usually small for surfaces with R-values of ≤ 60,
+			variance can exceed ~10% for older Schmidt Hammers and should be accounted for<sup><a href="#2">2</a></sup>.
+			Users can contact
 			<script type="text/javascript" language="javascript">
 				<!--
 				// Email obfuscator script 2.1 by Tim Williams, University of Arizona
@@ -365,7 +366,7 @@
 					  ltr = coded.charAt(i)
 					  link += (ltr)
 					}
-					else {     
+					else {
 					  ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
 					  link += (key.charAt(ltr))
 					}
@@ -374,7 +375,7 @@
 				}
 				//-->
 			</script><noscript>Matt Tomkins</noscript> at the University of Manchester for advice on age calibration.</p></small>
-			
+
 			<label for='boulder_v'>Reference Boulder</label>
 			<select id='boulder_v' name='boulder_v' onchange='setBoulder(this.selectedIndex);'>
 				<option value='48.08' default>University of Manchester (GB)</option>
@@ -382,15 +383,15 @@
 				<option value='44.14'>Bassies (Pyrenees)</option>
 				<option value='48.67'>Carlit (Pyrenees)</option>
 			</select>
-			
-			<img id="boulderimg" src="/static/shedcalc/images/manchester.png" alt="Photograph of boulder location">		
-			
+
+			<img id="boulderimg" src="/static/shedcalc/images/manchester.png" alt="Photograph of boulder location">
+
 			<label for='boulder'>Mean R Value (Boulder):</label>
 			<input type="text"  id='boulder_r' name='boulder_r' value="48.08" ></input><br/>
-			
+
 			<small><p>If you wish to load any of the default values into the <strong>Mean R Value (boulder)</strong> box, you can do so by clicking the link in the below table. Use the coordinate links to view the location on Google Maps.</p></small>
 			<table>
-<!-- 
+<!--
 				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th><th>Location (Lon,Lat)</th></tr>
 				<tr><td>University of Manchester</td><td>British Isles</td><td><a href="javascript:void(0);" onclick='setRValue(48.08);'>48.08</a></td><td>±0.82</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=53.46667120,-2.23484069&basemap=terrain">-2.23484069, 53.46667120</a></td><tr/>
 				<tr><td>Maladeta</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(52.60);'>52.60</a></td><td>±0.74</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.67894000,0.64960200&basemap=terrain">0.64960200, 42.67894000</a></td><tr/>
@@ -403,13 +404,13 @@
 				<tr><td>Bassies</td><td>Pyrenees</td><td>44.14</td><td>±0.60</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.74457700,1.46471300&basemap=terrain">1.46471300, 42.74457700</a></td><tr/>
 				<tr><td>Carlit</td><td>Pyrenees</td><td>48.67</td><td>±0.65</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.51446200,2.05129200&basemap=terrain">2.05129200, 42.51446200</a></td><tr/>
 			<table>
-			
+
 			<hr>
-	
+
 			<input id="calculate" class="button-primary" type="submit" value="Calculate" ></input>
-			
+
 			<h5>Demo Data</h5>
-			<small><p>If you would like to have a go with the website but do not have data 
+			<small><p>If you would like to have a go with the website but do not have data
 			to hand, simply click here for to load some demo data into the above form:</p></small>
 			<input class="button" type="button" value="Load Demo Values" onclick="loadDemoValues()"></input>
 		</form>
@@ -421,7 +422,7 @@
 		<div id='ref'></div><script>populateReference();</script>
 		<h5>Source Code</h5>
 		<p>The source code for this website is available on <a href="https://github.com/jonnyhuck/shed-earth">GitHub</a>.</p>
-		
+
 		<h5>References</h5>
 		<ol>
 			<div id="1"><li><a href="https://doi.org/10.1016/j.quageo.2016.02.002">Tomkins, M. D., Dortch, J. M., & Hughes, P. D. (2016). Schmidt Hammer exposure dating (SHED): Establishment and implications for the retreat of the last British Ice Sheet. Quaternary Geochronology, 33, 46–60.</a></li></div>
