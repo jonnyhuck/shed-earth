@@ -157,26 +157,27 @@
 <div class='container'>
 	<h1>SHED Earth</h1>
 	<div class='underline'>
-		<p>Welcome to SHED Earth. SHED refers to Schmidt Hammer Exposure Dating: a technique
+		<p>Welcome to SHED Earth. SHED refers to Schmidt hammer exposure dating: a technique
 		that provides a cost-effective solution for dating the exposure of granite surfaces.
 		This can be used to constrain the timing of past events, which permits a better
 		understanding of the links between climate and landscape evolution.</p>
 
 		<p>The approach is based upon a study by Tomkins et al. (2016)<sup><a href="#1">1</a></sup>,
 		in which a statistically significant relationship was observed between the exposure ages
-		<em>(derived from terrestrial cosmogenic nuclide dating)</em>, and Schmidt Hammer rebound
+		<em>(derived from terrestrial cosmogenic nuclide dating)</em>, and Schmidt hammer rebound
 		values (R-values) of 25 granitic surfaces from NW England and Scotland. This has recently
-		been updated with 29 additional exposure ages from across Scotland and Ireland<sup><a href="#2">2</a></sup> and is now
-		applicable over the timescale 0.8 - 23.8 thousand years ago, covering the entire post-Last
+		been updated with 29 additional exposure ages from across Scotland and Ireland<sup><a href="#2">2</a></sup>. Calibration samples 
+		now span the last ~24 thousand years and encompass the entire post-Last
 		Glacial Maximum (LGM) history of the British-Irish Ice Sheet. In addition, a new curve has
 		recently been made available for the Pyrenees<sup><a href="#18">18</a></sup>, based on 52 TCN dated surfaces
-		from across the mountain range. These new data confirm the accuracy and reproducibility of previous
-		research<sup><a href="#1">1</a></sup> and demonstrate that this method can be applied
-		successfully in contrasting climatic regimes. In addition, these studies show that equivalent
-		time-dependent weathering of granite surfaces can occur over significant spatial scales for
-		regions of similar climate. The technique has been demonstrated to be of comparable accuracy
-		and precision to ages derived from TCN dating, but without the significant expense that goes
-		along with the use of such techniques, making it useful for researchers and students alike.</p>
+		from across the mountain range. These new data appear consistent with previous
+		research<sup><a href="#1">1</a></sup> and indicate that this method can be applied
+		successfully in contrasting climatic regimes. </p>
+		
+		</p>While further work is required to test these calibration curves in a range of landscapes
+		<sup><a href="#21">21</a></sup>, this approach is cost- and time-efficient, making it useful for researchers and students alike.
+		In turn, we hope that SHED will be of value to the Quaternary community, in that it can complement existing TCN studies
+		in poorly dated regions and can be applied widely to undated glacial landforms. </p>
 
 		<form action="{% url 'shedcalc:results' %}" method="post" onsubmit="return validateForm()">
 
@@ -224,7 +225,7 @@
 			TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent
 			Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Rannoch Moor production rate
 			<sup><a href="#5">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full
-			details, see Tomkins et al. (2017)<sup><a href="#2">2</a></sup>. It is anticipated that as
+			details, see Tomkins et al. (2018)<sup><a href="#2">2</a></sup>. It is anticipated that as
 			new calibration curves are constructed in similar well-dated regions, they will be made
 			available for use on this site.</p></small></div>
 
@@ -232,7 +233,7 @@
 			<small><p>The largest uncertainty involved in calculating TCN exposure ages is
 			the choice of production rate. As the SHED calibration is based on TCN exposure ages,
 			production rate controls the slope of the calibration curve and in turn, influences SH
-			exposure age estimates. As such, we provide three production rates for calculating SH
+			exposure age estimates. As such, we provide four production rates for calculating SH
 			exposure ages.</p>
 
 			<!--
@@ -247,7 +248,8 @@
 			(RM-PR; 3.95 ± 0.11 atoms g<sup>-1</sup> a<sup>-1</sup>; Putnam et al., 2019<sup><a href="#5">5</a></sup>), which is based on <sup>10</sup>Be
 			concentrations from boulders deposited on a glacial moraine belt on Rannoch Moor, central Scottish Highlands,
 			the timing of which is independently constrained by proximal <sup>14</sup>C ages (Bromley et al., 2014<sup><a href="#19">19</a></sup>) and
-			<sup>14</sup>C ages from outlet glaciers of the West Highland ice field."
+			<sup>14</sup>C ages from outlet glaciers of the West Highland ice field. However, it should be noted that the
+				validity of this production rate has recently been questioned<sup><a href="#22">22</a></sup>.
 
 			<p>Secondly, we provide the Glen Roy production rate (GRPR; 4.31 ± 0.21 atoms g<sup>-1</sup> a<sup>-1</sup>;
 			Small and Fabel, 2015<sup><a href="#7">7</a></sup>) which is derived from assumed ages of tephra within a floating
@@ -262,7 +264,7 @@
 			production rates are available.</p>
 
 			<p>Finally, we provide the Loch Lomond production rate (LLPR; 3.99 ± 0.06 atoms g-1 a-1; Fabel et al., 2012)
-				<sup><a href="#20">20</a></sup> which is based on 10Be concentrations from erratic boulders on the terminal
+				<sup><a href="#20">20</a></sup> which is based on <sup>10</sup>Be concentrations from erratic boulders on the terminal
 				moraine of the Younger Dryas Loch Lomond glacier advance, the timing of which is independently constrained
 				by 14C ages derived from a varve chronology (MacLeod et al., 2011)<sup><a href="#8">8</a></sup>. This
 				calibration dataset is one of the most widely used local production rates in the British Isles.</p></small>
@@ -299,22 +301,31 @@
 			<textarea id='tabdata' name='tabdata' class='u-full-width' ></textarea><br/>
 
 			<h5>Instrument Calibration Values</h5>
-			<small><p>In order to ensure that the Schmidt Hammer is functioning correctly and
+			<small><p>In order to ensure that the Schmidt hammer is functioning correctly and
 			yielding the same R-value on an identical rock surface, even after hundreds or
 			thousands of impacts<sup><a href="#10">10</a></sup>, users should test their Schmidt Hammer using a suitable
-			surface before and after sampling. Previous studies have advocated the use of the Proceq
-			test anvil<sup><a href="#10">10,11</a></sup>. An implicit assumption in the test anvil calibration procedure is
+			surface before and after sampling.</p>
+				
+			<p>In order to test Schmidt hammer functionality, a concrete test anvil (<a href="https://www.yorksurvey.co.uk/concrete-testing-anvil-c2x22546678">example here</a>) 
+			is typically used to assess deviation from a standard value (N-type SH = 81 ± 2). This is a good approach to <strong>test</strong>
+			functionality because operator variance is minimal (e.g. identical contact point and angle of operation) and because
+			the anvils construction minimises wear following repeated impacts. In turn, the anvil typically returns consistent readings at the upper end of the
+			functional range of the Schmidt hammer (~81 R-value). However, if functionality is compromised (i.e. measured R-value < standard R-value),
+			then it is necessary to calibrate R-values measured in the field.</p> 				
+				
+			<p>Previous studies have advocated the use of the concrete
+			test anvil<sup><a href="#10">10,11</a></sup>. However, an implicit assumption in the test anvil calibration procedure is
 			that the difference (%) between the specified anvil standard and the recorded average
 			is consistent throughout the operational range of the Schmidt Hammer i.e. a 20% R-value
-			difference between two Schmidt Hammers as recorded using the test anvil should also be
+			difference between two Schmidt hammers as recorded using the test anvil should also be
 			replicated on a range of natural rock surfaces. However, this is not supported by evidence<sup><a href="#2">2</a></sup>
-			as the difference between Schmidt Hammers as recorded using the test anvil is not maintained
+			as the difference between Schmidt hammers as recorded using the test anvil is not maintained
 			throughout the tools’ operational range but decreases significantly as the surface
 			R-value decreases. As a result, this method over-estimates R-values for surfaces typically
 			tested by Quaternary researchers<sup><a href="#2">2</a></sup>.</p>
 
 			<p>For very hard rock surfaces (R-values: ≥ 70), the test
-			anvil method may be more effective, as variation between Schmidt Hammers as recorded on
+			anvil method may be more effective, as variation between Schmidt hammers as recorded on
 			the anvil is probably representative of variability on sampled rock surfaces. However,
 			for the vast majority of rock surfaces tested by Quaternary researchers (R-values: ≤ 60),
 			the anvil method will significantly overestimate R-values<sup><a href="#2">2</a></sup>. Thus, users should perform
@@ -451,7 +462,9 @@
 			<div id="17"><li><a href="https://doi.org/10.1016/j.quageo.2016.06.001">Dortch, J. M., Hughes, P. D., & Tomkins, M. D. (2016). Schmidt hammer exposure dating (SHED): Calibration boulder of Tomkins et al. (2016). Quaternary Geochronology, 35, 67–68.</a></li></div>
 			<div id="18"><li><a href="https://doi.org/10.1017/qua.2018.12">Tomkins, M. D., Dortch, J.D., Hughes, P.D., Huck, J.J., Stimson, A., Delmas, A., Calvet, M., & Pallàs, R. (2018) Rapid age assessment of glacial landforms in the Pyrenees using Schmidt hammer exposure dating (SHED). Quaternary Research 90, 26-37.</a></li></div>
 			<div id="19"><li><a href="https://doi.org/10.1073/pnas.1321122111">Bromley, G.R.M., Putnam, A.E., Rademaker, K.M., Lowell, T.V., Schaefer, J.M., Hall,B., Winckler, G., Birkel, S.D., Borns, H.W. (2019). Younger Dryas warming and deglaciation in Scotland. Proceedings of the National Academy of Sciences Apr 2014, 111 (17) 6215-6219.</a></li></div>
-			<div id="20"><li><a href=" https://doi.org/10.1016/j.quascirev.2012.09.002">Fabel, D., Ballantyne, C. K., & Xu, S. (2012). Trimlines, blockfields, mountain-top erratics and the vertical dimensions of the last British–Irish Ice Sheet in NW Scotland. Quaternary Science Reviews, 55, 91-102.</a></li></div>
+			<div id="20"><li><a href="https://doi.org/10.1016/j.quascirev.2012.09.002">Fabel, D., Ballantyne, C. K., & Xu, S. (2012). Trimlines, blockfields, mountain-top erratics and the vertical dimensions of the last British–Irish Ice Sheet in NW Scotland. Quaternary Science Reviews, 55, 91-102.</a></li></div>
+			<div id="21"><li><a href="https://doi.org/10.1017/qua.2019.12">Wilson, P., Dunlop, P., Millar, C., & Wilson, F. A. (2019). Age determination of glacially-transported boulders in Ireland and Scotland using Schmidt-hammer exposure-age dating (SHD) and terrestrial cosmogenic nuclide (TCN) exposure-age dating. Quaternary Research 92(2), 570–582.</a></li></div>
+			<div id="22"><li><a href="https://doi.org/10.1016/j.quascirev.2019.06.034">Lowe, J., Matthews, I., Mayfield, R., Lincoln, P., Palmer, A., Staff, R., & Timms, R. (2019). On the timing of retreat of the Loch Lomond (‘Younger Dryas’) Readvance icefield in the SW Scottish Highlands and its wider significance. Quaternary Science Reviews 219, 171-186.</a></li></div>
 		</ol>
 	</div>
 </div>
