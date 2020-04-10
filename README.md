@@ -21,7 +21,7 @@ This dataset has recently been updated by Tomkins et al. (2018a), with the inclu
 The **key files** in this repository are:
 
 - **data** folder: this includes the <sup>10</sup>Be TCN exposure ages and their corresponding Schmidt hammer R-values. These data are used for calibration curve construction.
-- shedcalc/**schmidt.py(*: this file includes the core functions for instrument and age calibration, and calibration curve construction (*fitLineGB*, *fitLinePY*) using orthogonal distance regression (Boggs and Rogers, 1989).    
+- shedcalc/**schmidt.py**: this file includes the core functions for instrument and age calibration, and calibration curve construction (*fitLineGB*, *fitLinePY*) using orthogonal distance regression (Boggs and Rogers, 1989).    
 - shedcalc\templates\shedcalc:
 	- **index.html**: HTML code for website home page.
 	- **results.html**: HTML code for website results page.
