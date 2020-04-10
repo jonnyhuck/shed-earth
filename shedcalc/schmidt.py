@@ -9,6 +9,8 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from django import http
 from math import log10
+import pandas as pd
+
 
 '''
 # If it whinges about matplotlib, do this:
@@ -102,11 +104,34 @@ def getAgeCalibration(v, r):
 	"""
 	r - their input r value
 	v - hardness value derived from the boulder - from database (c. 48 for ours, 15 for Mars)
+
+        Update by MT 10/04/2020, if their input r value is within the uncertainty bounds,
+        e.g. 47.8 > 48.08 - 0.82, then no correction is made.
+
+        Before, we would apply a correction (in this case) of 0.99417637 (negligible)
+
+        Given the uncertainty of the technique (e.g. surface weathering, moisture),
+        this is probably a more sensible approach.
+        
 	"""
-	return v/r
+	# Sets errors (v_err), based on Table in shedcalc/templates/shedcalc/index.html
+        if v = 48.08:
+                v_err = 0.82
+        if v = 52.60:
+                v_err = 0.74         
+        if v = 44.14:
+                v_err = 0.60
+        if v = 48.67:
+                v_err = 0.65
+
+	
+	if r < v-v_err or r > v+v_err:
+                return v/r
+        else:
+                return 1
 
 
-def getCalibratedValues(data, v, r):
+def getCalibratedValues(data, v, v_err, r):
 	"""
 	multiply means by age calibration
 	"""
@@ -137,6 +162,28 @@ def fitLineGB(data, prodrate):
 	# one sigma (68%)
 	alpha = 0.32
 
+	# Loads calibration data from Supplementary File (update file path), and subsets to Pyrenees only
+        df = pd.read_csv("./data/Calibration_Summary.csv")
+        df = data.loc[(data['Region'] == 'British')]
+
+        # load calibration data for curve creation
+        x = df.loc[:, 'SH_Mean'].values
+
+        if prodrate == 0:	# Default, Balco calculator
+		y = df.loc[:, 'Balco_Age'].values
+	elif prodrate == 1:	# Next, CRONUS v2
+		y = df.loc[:, 'CRONUS_Age'].values
+	elif prodrate == 2:	# Loch Lomond
+		y = df.loc[:, 'Lomond_Age'].values 
+	elif prodrate == 3:	# Rannoch Moor
+		y = df.loc[:, 'Rannoch_Age'].values
+	elif prodrate == 4:     # Glen Roy
+               y = df.loc{:, 'Roy_Age'].values
+               
+
+        '''
+        Original version of code
+
 	# calibration curve data
 	x = np.array([39.406,49.014,47.516,39.570,36.732,39.247,41.792,42.547,42.490,26.529,30.672,27.876,30.999,41.083,41.672,40.386,45.705,41.387,41.689,45.398,43.304,39.669,35.844,38.867,28.850,34.470,35.130,35.160,39.570,36.310,36.000,59.499,63.003,58.122,63.692,60.791,47.246,46.481,42.943,45.285,46.525,44.757,27.233,30.233,29.533,25.567,28.033,30.267,28.712,29.015,28.811,33.083,38.923,37.835,46.589,47.086,44.401,40.961,44.665,45.471,42.889,40.007,43.644,42.138,40.656])
 
@@ -149,6 +196,9 @@ def fitLineGB(data, prodrate):
 		y = np.array([15.268,12.527,12.887,13.524,13.123,14.458,12.714,13.594,12.078,21.416,18.884,19.255,21.152,14.553,14.212,14.893,11.274,12.085,11.573,12.188,12.795,16.31,19.260,15.691,20.007,15.175,13.623,15.92,16.025,14.474,15.325,2.669,1.584,5.304,0.83,2.311,10.678,10.859,12.113,11.064,10.837,11.523,20.946,20.433,20.532,22.721,20.941,21.308,21.818,21.956,20.009,17.402,15.115,15.908,10.834,8.911,11.033,13.167,12.972,12.635,15.185,14.698,14.114,12.165,13.763])
 	elif prodrate == 3:	# Loch Lomond
 		y = np.array([16.069,13.18,13.561,14.23,13.809,15.215,13.378,14.304,12.707,22.539,19.873,20.264,22.261,15.314,14.956,15.673,11.864,12.718,12.179,12.827,13.465,17.162,19.260,16.51,21.052,15.969,14.334,16.753,16.864,15.231,16.127,2.808,1.667,5.583,0.876,2.431,11.236,11.427,12.745,11.642,11.403,12.124,22.045,21.504,21.609,23.912,22.039,22.426,22.955,23.101,21.058,18.313,15.906,16.74,11.397,9.389,11.606,13.855,13.65,13.295,15.981,15.466,14.852,12.8,14.483])
+        
+
+        '''
 
 	# number of samples
 	n = len(x)
@@ -224,6 +274,29 @@ def fitLinePY(data, prodrate):
 	# one sigma (68%)
 	alpha = 0.32
 
+	
+        # Loads calibration data from Supplementary File (update file path), and subsets to Pyrenees only
+        df = pd.read_csv("./data/Calibration_Summary.csv")
+        df = data.loc[(data['Region'] == 'Pyrenees')]
+
+        # load calibration data for curve creation
+        x = df.loc[:, 'SH_Mean'].values
+
+        if prodrate == 0:	# Default, Balco calculator
+		y = df.loc[:, 'Balco_Age'].values
+	elif prodrate == 1:	# Next, CRONUS v2
+		y = df.loc[:, 'CRONUS_Age'].values
+	elif prodrate == 2:	# Loch Lomond
+		y = df.loc[:, 'Lomond_Age'].values 
+	elif prodrate == 3:	# Rannoch Moor
+		y = df.loc[:, 'Rannoch_Age'].values
+	elif prodrate == 4:     # Glen Roy
+               y = df.loc{:, 'Roy_Age'].values
+
+        '''
+
+	Original version of code.
+
 	# calibration curve data
 	x = np.array([54.034,57.601,61.934,59.234,51.135,57.802,49.502,48.602,47.202,46.603,46.904,51.638,55.372,51.905,53.072,42.904,42.705,39.971,39.671,38.905,52.140,49.506,53.507,41.950,23.409,26.477,25.811,40.584,45.152,45.820,45.820,41.585,40.084,45.487,40.318,38.451,45.488,42.920,46.755,45.955,48.857,47.223,51.025,47.790,48.224,50.092,48.124,49.258,47.524,48.836,59.836,49.603])
 
@@ -235,6 +308,8 @@ def fitLinePY(data, prodrate):
 		y = np.array([12.866,12.436,4.138,5.285,11.740,8.944,13.828,13.600,14.761,15.644,15.982,12.130,8.714,12.178,11.783,20.982,20.609,22.634,23.234,23.858,10.967,11.988,11.987,21.307,51.862,43.874,42.212,20.431,17.226,17.374,17.453,20.949,22.503,18.887,22.052,24.974,18.005,19.417,18.157,18.720,16.550,16.414,15.022,16.475,16.699,16.452,16.406,15.151,17.410,16.924,8.673,17.910])
 	elif prodrate == 3:	# Loch Lomond
 		y = np.array([14.081,12.77,4.261,5.434,12.001,8.847,14.132,13.932,15.129,16.078,16.451,12.41,8.974,12.538,12.078,21.833,21.634,23.07,23.718,24.625,11.471,12.485,12.464,21.962,54.042,45.62,44.173,21.292,17.855,18.047,18.08,21.805,24.276,19.73,22.99,26.2,18.882,20.412,19.123,19.634,17.501,17.2,15.8,17.556,17.675,17.33,17.282,15.958,18.194,17.942,9.34,18.67])
+
+        '''
 
 	# log the R values
 	x = np.array([log10(i) for i in x])
