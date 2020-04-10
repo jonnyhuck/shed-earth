@@ -13,6 +13,6 @@ These data were last updated on: **10/04/2020**
 
 ## References
 
--[Balco, G., Stone, J. O., Lifton, N. A. and Dunai, T. J. (2008). A complete and easily accessible means of calculating surface exposure ages or erosion rates from <sup>10</sup>Be and <sup>26</sup>Al measurements. Quaternary Geochronology, 3(3), 174-195.](https://doi.org/10.1016/j.quageo.2007.12.001)
--[Marrero, S. M., Phillips, F. M., Borchers, B., Lifton, N., Aumer, R. and Balco, G. (2016). Cosmogenic nuclide systematics and the CRONUScalc program. Quaternary Geochronology, 31, 160-187.](https://doi.org/10.1016/j.quageo.2015.09.005)
--[Borchers, B., Marrero, S., Balco, G., Caffee, M., Goehring, B., Lifton, N., Nishiizumi, K., Phillips, F., Schaefer, J. and Stone, J. (2016). Geological calibration of spallation production rates in the CRONUS-Earth project. Quaternary Geochronology, 31, 188-198.](https://doi.org/10.1016/j.quageo.2015.01.009)
+- [Balco, G., Stone, J. O., Lifton, N. A. and Dunai, T. J. (2008). A complete and easily accessible means of calculating surface exposure ages or erosion rates from <sup>10</sup>Be and <sup>26</sup>Al measurements. Quaternary Geochronology, 3(3), 174-195.](https://doi.org/10.1016/j.quageo.2007.12.001)
+- [Marrero, S. M., Phillips, F. M., Borchers, B., Lifton, N., Aumer, R. and Balco, G. (2016). Cosmogenic nuclide systematics and the CRONUScalc program. Quaternary Geochronology, 31, 160-187.](https://doi.org/10.1016/j.quageo.2015.09.005)
+- [Borchers, B., Marrero, S., Balco, G., Caffee, M., Goehring, B., Lifton, N., Nishiizumi, K., Phillips, F., Schaefer, J. and Stone, J. (2016). Geological calibration of spallation production rates in the CRONUS-Earth project. Quaternary Geochronology, 31, 188-198.](https://doi.org/10.1016/j.quageo.2015.01.009)
