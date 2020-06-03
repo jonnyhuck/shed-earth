@@ -19,24 +19,19 @@ def calc(request):
 	Render the results page (calculates the result...)
 	"""
 
-	# get which region (calibration curve) we are using
-	region = int(request.POST['region'])
-
-	# get which production rate was used
-	prodrate = int(request.POST['prodrate'])
+	# retrieve data from the request object
+	region = int(request.POST['region'])		# region
+	prodrate = int(request.POST['prodrate'])	# production rate
+	before = float(request.POST['before'])		# R before sampling
+	after = float(request.POST['after'])		# R after sampling
+	boulderR = float(request.POST['boulder_r'])	# mean R for boulder
+	boulderV = float(request.POST['boulder_v'])	# calibration R for boulder
 
 	# import the posted table of data and parse into lists
 	names, lats, lngs, data = parseInputTable(request.POST['tabdata'])
 
-	# get before and after values
-	before = float(request.POST['before'])
-	after = float(request.POST['after'])
-	boulderR = float(request.POST['boulder_r'])
-	boulderV = float(request.POST['boulder_v'])
-
 	# calculate the drift factor and apply to cells
-	df = getDriftFactor(before, after, data)
-	correctedCells = applyDriftFactorToCells(df, data)
+	correctedCells = applyDriftFactorToCells(getDriftFactor(before, after, data), data)
 
 	# calibrate values against our boulder
 	calibratedValues = getCalibratedValues(correctedCells, boulderV, boulderR)
@@ -70,15 +65,12 @@ def calc(request):
 	ages2 = [ round(i, 1) for i in ages ]
 	errors2 = [ round(i, 1) for i in error ]
 
-	# prepare context to pass it to the template
-	context = {
+	# render the template using the resulting data
+	return render(request, 'shedcalc/results.html', {
 		'outputs': outputs,
 		'ages':str(ages2).replace(" ", "").replace("[", "").replace("]", ""),
 		'errors':str(errors2).replace(" ", "").replace("[", "").replace("]", "")
-		}
-
-	# render the template using the resulting data
-	return render(request, 'shedcalc/results.html', context)
+		})
 
 
 def samples_chart(request):
