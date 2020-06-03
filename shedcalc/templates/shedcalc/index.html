@@ -11,7 +11,7 @@
 	 */
 	function populateReference(){
 		var d = new Date();
-		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J., Dortch, J., Hughes P. D., Kirkbride, M. & Barr, I. (", d.getFullYear(),"). SHED Earth. <a href=\"http://www.shed.earth/shedcalc\">http://shed.earth</a>. <em>Accessed ", d.getDate(), "/", d.getMonth()+1, "/", d.getFullYear(), ".</em></p>"].join('');
+		document.getElementById('ref').innerHTML = ["<p>Tomkins, M., Huck, J. J., Dortch, J., Hughes P. D., Kirkbride, M. & Barr, I. (", d.getFullYear(),"). SHED Earth. <a href=\"http://www.shed.earth/shedcalc\">http://shed.earth</a>. <em>Accessed ", d.getDate(), "/", d.getMonth()+1, "/", d.getFullYear(), ".</em></p>"].join('');
 	}
 
 	/**
@@ -116,15 +116,15 @@
 	function region_select(selectedIndex){
 
 		// set to default production rate and update the chart
-		if (selectedIndex == 0) {			// GB = Lock Lomond
+		if (selectedIndex == 0) {
 			document.getElementById('prodrate').value = 0;
-			document.getElementById("localchart").src="./chartgb.png";
+			document.getElementById("localchart").src="/static/shedcalc/images/british-curve.png";
 			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the British Isles and is based on 54 TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the Rannoch Moor production rate<sup><a href="#5">5</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full details, see Tomkins et al. (2018a)<sup><a href="#2">2</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>';
 			document.getElementById('boulder_v').selectedIndex = 0;
 			setBoulder(0);
-		} else if (selectedIndex == 1){		// PY = CRONUS
-			document.getElementById('prodrate').value = 2;
-			document.getElementById("localchart").src="./chartpy.png";
+		} else if (selectedIndex == 1) {
+			document.getElementById('prodrate').value = 0;
+			document.getElementById("localchart").src="/static/shedcalc/images/pyrenees-curve.png";
 			document.getElementById("cctext").innerHTML = '<small><p>This is the latest calibration curve for the Pyrenees and is based on 52 TCN dated surfaces from across the mountain range. These exposure ages are calculated using the time-dependent Lm scaling scheme<sup><a href="#3">3,4</a></sup>, the primary calibration dataset of Borchers et al. (2016)<sup><a href="#9">9</a></sup> and assuming 0 mm ka<sup>-1</sup> erosion. For full details, see Tomkins et al. (2018b)<sup><a href="#18">18</a></sup>. It is anticipated that as new calibration curves are constructed in similar well-dated regions, they will be made available for use on this site.</p></small>'
 			document.getElementById('boulder_v').selectedIndex = 1;
 			setBoulder(1);
@@ -166,14 +166,14 @@
 		in which a statistically significant relationship was observed between the exposure ages
 		<em>(derived from terrestrial cosmogenic nuclide dating)</em>, and Schmidt hammer rebound
 		values (R-values) of 25 granitic surfaces from NW England and Scotland. This has recently
-		been updated with 29 additional exposure ages from across Scotland and Ireland<sup><a href="#2">2</a></sup>. Calibration samples 
+		been updated with 29 additional exposure ages from across Scotland and Ireland<sup><a href="#2">2</a></sup>. Calibration samples
 		now span the last ~24 thousand years and encompass the entire post-Last
 		Glacial Maximum (LGM) history of the British-Irish Ice Sheet. In addition, a new curve has
 		recently been made available for the Pyrenees<sup><a href="#18">18</a></sup>, based on 52 TCN dated surfaces
 		from across the mountain range. These new data appear consistent with previous
 		research<sup><a href="#1">1</a></sup> and indicate that this method can be applied
 		successfully in contrasting climatic regimes. </p>
-		
+
 		</p>While further work is required to test these calibration curves in a range of landscapes
 		<sup><a href="#21">21</a></sup>, this approach is cost- and time-efficient, making it useful for researchers and students alike.
 		In turn, we hope that SHED will be of value to the Quaternary community, in that it can complement existing TCN studies
@@ -219,7 +219,7 @@
 				<option value='0' default>British Isles</option>
 				<option value='1'>Pyrenees</option>
 			</select>
-			<img id='localchart' src="./chartgb.png" alt="regression chart" />
+			<img id='localchart' src="/static/shedcalc/images/british-curve.png" alt="regression chart" />
 
 			<div id='cctext'><small><p>This is the latest calibration curve for the British Isles and is based on 54
 			TCN dated surfaces from Scotland, NW England and Ireland.  These exposure ages are calculated using the time-dependent
@@ -236,14 +236,6 @@
 			exposure age estimates. As such, we provide four production rates for calculating SH
 			exposure ages.</p>
 
-			<!--
-			<p>For the British Isles SHED curve, the default calibration dataset is the Loch Lomond production
-			rate (LLPR; 4.02 ± 0.18 atoms g<sup>-1</sup> a<sup>-1</sup>; Fabel et al., 2012<sup><a href="#5">5</a></sup>),
-			which is based on <sup>10</sup>Be concentrations from erratic boulders on the terminal moraine of the Younger Dryas
-			Loch Lomond glacier advance, the timing of which is independently constrained by <sup>14</sup>C
-			ages derived from a varve chronology (MacLeod et al., 2011<sup><a href="#6">6</a></sup>). This calibration dataset
-			is the most widely used local production rate in the British Isles.</p>
-			-->
 			<p>For the British Isles SHED curve, the default calibration dataset is the Rannoch Moor production rate
 			(RM-PR; 3.95 ± 0.11 atoms g<sup>-1</sup> a<sup>-1</sup>; Putnam et al., 2019<sup><a href="#5">5</a></sup>), which is based on <sup>10</sup>Be
 			concentrations from boulders deposited on a glacial moraine belt on Rannoch Moor, central Scottish Highlands,
@@ -271,10 +263,11 @@
 
 			<label for='prodrate'>Select Production Rate:</label>
 			<select id='prodrate' name='prodrate'>
-				<option value='0' default>Rannoch Moor</option>
-				<option value='1'>Glen Roy</option>
-				<option value='2'>CRONUS-calc default</option>
-				<option value='3'>Loch Lomond</option>
+				<option value='0' default>Balco v3</option>
+				<option value='1'>CRONUS v2</option>
+				<option value='2'>Loch Lomond</option>
+				<option value='3'>Rannoch Moor</option>
+				<option value='4'>Glen Roy</option>
 			</select>
 
 			<h3>Data Input</h3>
@@ -305,14 +298,14 @@
 			yielding the same R-value on an identical rock surface, even after hundreds or
 			thousands of impacts<sup><a href="#10">10</a></sup>, users should test their Schmidt Hammer using a suitable
 			surface before and after sampling.</p>
-				
-			<p>In order to test Schmidt hammer functionality, a concrete test anvil (<a href="https://www.yorksurvey.co.uk/concrete-testing-anvil-c2x22546678">example here</a>) 
+
+			<p>In order to test Schmidt hammer functionality, a concrete test anvil (<a href="https://www.yorksurvey.co.uk/concrete-testing-anvil-c2x22546678">example here</a>)
 			is typically used to assess deviation from a standard value (N-type SH = 81 ± 2). This is a good approach to <strong>test</strong>
 			functionality because operator variance is minimal (e.g. identical contact point and angle of operation) and because
 			the anvils construction minimises wear following repeated impacts. In turn, the anvil typically returns consistent readings at the upper end of the
 			functional range of the Schmidt hammer (~81 R-value). However, if functionality is compromised (i.e. measured R-value < standard R-value),
-			then it is necessary to calibrate R-values measured in the field.</p> 				
-				
+			then it is necessary to calibrate R-values measured in the field.</p>
+
 			<p>Previous studies have advocated the use of the concrete
 			test anvil<sup><a href="#10">10,11</a></sup>. However, an implicit assumption in the test anvil calibration procedure is
 			that the difference (%) between the specified anvil standard and the recorded average
@@ -408,13 +401,6 @@
 
 			<small><p>If you wish to load any of the default values into the <strong>Mean R Value (boulder)</strong> box, you can do so by clicking the link in the below table. Use the coordinate links to view the location on Google Maps.</p></small>
 			<table>
-<!--
-				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th><th>Location (Lon,Lat)</th></tr>
-				<tr><td>University of Manchester</td><td>British Isles</td><td><a href="javascript:void(0);" onclick='setRValue(48.08);'>48.08</a></td><td>±0.82</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=53.46667120,-2.23484069&basemap=terrain">-2.23484069, 53.46667120</a></td><tr/>
-				<tr><td>Maladeta</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(52.60);'>52.60</a></td><td>±0.74</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.67894000,0.64960200&basemap=terrain">0.64960200, 42.67894000</a></td><tr/>
-				<tr><td>Bassies</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(44.14);'>44.14</a></td><td>±0.60</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.74457700,1.46471300&basemap=terrain">1.46471300, 42.74457700</a></td><tr/>
-				<tr><td>Carlit</td><td>Pyrenees</td><td><a href="javascript:void(0);" onclick='setRValue(48.67);'>48.67</a></td><td>±0.65</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.51446200,2.05129200&basemap=terrain">2.05129200, 42.51446200</a></td><tr/>
- -->
  				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th><th>Location (Lon,Lat)</th></tr>
 				<tr><td>University of Manchester</td><td>British Isles</td><td>48.08</td><td>±0.82</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=53.46667120,-2.23484069&basemap=terrain">-2.23484069, 53.46667120</a></td><tr/>
 				<tr><td>Maladeta</td><td>Pyrenees</td><td>52.60</td><td>±0.74</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=42.67894000,0.64960200&basemap=terrain">0.64960200, 42.67894000</a></td><tr/>
@@ -446,7 +432,6 @@
 			<div id="2"><li><a href="https://doi.org/10.1016/j.quageo.2017.12.003">Tomkins, M. D., Huck, J. J., Dortch, J. M., Hughes P. D., Kirkbride, M. & Barr, I. (2017) Schmidt Hammer exposure dating (SHED): Calibration procedures, new exposure age data and an online calculator. Quaternary Geochronology, 44, 55-62.</a></li></div>
 			<div id="3"><li><a href="https://doi.org/10.1016/0012-821X(91)90220-C">Lal, D. (1991). Cosmic ray labeling of erosion surfaces: in situ nuclide production rates and erosion models. Earth and Planetary Science Letters, 104(2-4), 424-439.</a></li></div>
 			<div id="4"><li><a href="http://dx.doi.org/10.1029/2000JB900181">Stone, J. O. (2000). Air pressure and cosmogenic isotope production. Journal of Geophysical Research: Solid Earth, 105(B10), 23753-23759.</a></li></div>
-			<!-- <div id="5"><li><a href="https://doi.org/10.1016/j.quascirev.2012.09.002">Fabel, D., Ballantyne, C. K., & Xu, S. (2012). Trimlines, blockfields, mountain-top erratics and the vertical dimensions of the last British–Irish Ice Sheet in NW Scotland. Quaternary Science Reviews, 55, 91-102.</a></li></div> -->
 			<div id="5"><li><a href="https://doi.org/10.1016/j.quageo.2018.11.006">Putnam A.E., Bromley, G.R.M., Rademaker, K., Schaefer, J.M. (2019)In situ <sup>10</sup>Be production-rate calibration from a <sup>14</sup>C-dated late-glacial moraine belt in Rannoch Moor, central Scottish Highlands. Quaternary Geochronology 50, 109-125.</a></li></div>
 			<div id="6"><li><a href="https://doi.org/10.1016/j.gloplacha.2010.07.006">MacLeod, A., Palmer, A., Lowe, J., Rose, J., Bryant, C., Merritt, J., 2011. Timing of glacier response to Younger Dryas climatic cooling in Scotland. Glob. Planet. Change 79, 264–274.</a></li></div>
 			<div id="7"><li><a href="https://doi.org/10.1002/jqs.2804">Small, D., Fabel, D., 2015. A Lateglacial 10Be production rate from glacial lake shorelines in Scotland. J. Quat. Sci. 30, 509–513.</a></li></div>
