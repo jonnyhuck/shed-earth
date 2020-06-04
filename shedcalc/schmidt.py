@@ -9,10 +9,10 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 '''
 # If it whinges about matplotlib, do this:
-# Create a file ~/.matplotlib/matplotlibrc there and add the following code:
+# Create a file ~/.matplotlib/matplotlibrc there and add the following line:
 	backend: TkAgg
 
-# needed to undo this for Python 3
+# if the file exists already, it might be that you need to remove it...
 '''
 
 def parseInputTable(input):
@@ -171,20 +171,19 @@ def getAges(coefficients, x_data):
 	return the predicted ages and errors
 	"""
 
-	# for linear models
+	# set function and derivatives for linear models
 	if coefficients['model'] == "linear":
+		f = linear_func
+		d = [x_data, 1]
 
-		# predict age and 1-sigma (.68) prediction interval using model coefficients
-		y_predictions =  array([ linear_func(coefficients['beta'], x) for x in x_data ])
-		y_pi = prediction_interval(linear_func, [x_data, 1], x_data, y_predictions,
-			coefficients['eps'], 68., coefficients['beta'], coefficients['cov'])
-
-	# for logarithmic models
+	# set function and derivatives for logarithmic models
 	elif coefficients['model'] == "log":
+		f = log_func
+		d = [log10(x_data), 1]
 
-		# predict age and 1-sigma (.68) prediction interval using model coefficients
-		y_predictions = array([ log_func(coefficients['beta'], x) for x in x_data ])
-		y_pi = prediction_interval(log_func, [log10(x_data), 1], x_data, y_predictions,
-			coefficients['eps'], 68., coefficients['beta'], coefficients['cov'])
+	# predict age and 1-sigma (.68) prediction interval using model coefficients
+	y_predictions = f(coefficients['beta'], x_data)
+	y_pi = prediction_interval(f, d, x_data, y_predictions, coefficients['eps'],
+		68., coefficients['beta'], coefficients['cov'])
 
 	return y_predictions, y_pi
