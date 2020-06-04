@@ -25,6 +25,7 @@
 		document.getElementById('after').value = "47.5";
 
 		//set to gb
+		document.getElementById('region').selectedIndex = 0;
 		region_select(0);
 	}
 
@@ -105,6 +106,16 @@
 			alert("The Mean R Value (Boulder) must be numeric");
 			return false;
 		};
+		//verify that there is some data
+		if (document.getElementById('boulder_u').value == "") {
+			alert("please enter some data into the R Value uncertainty box");
+			return false;
+		}
+		//verify that it is numeric
+		if (isNaN(document.getElementById('boulder_u').value)) {
+			alert("The R Value uncertainty must be numeric");
+			return false;
+		};
 
 		return true;
 	}
@@ -134,8 +145,9 @@
 	/**
 	 * Populate the boulder box with a certain value
 	 */
-	function setRValue(val){
-		document.getElementById('boulder_r').value = val.toString();
+	function setRValue(r, u){
+		document.getElementById('boulder_r').value = r.toString();
+		document.getElementById('boulder_u').value = u.toString();
 	}
 
 	/**
@@ -145,7 +157,8 @@
 
 		//set the R Value for the default for the selected boulder
 		var rVals = [48.08, 52.60, 44.14, 48.67];
-		setRValue(rVals[selectedIndex]);
+		var uncertainties = [0.82, 0.74, 0.60, 0.65];
+		setRValue(rVals[selectedIndex], uncertainties[selectedIndex]);
 
 		//set the image for the selected boulder
 		var imgs = ["manchester.png", "maladeta.png", "bassies.png", "carlit.png"];
@@ -398,8 +411,9 @@
 
 			<label for='boulder'>Mean R Value (Boulder):</label>
 			<input type="text"  id='boulder_r' name='boulder_r' value="48.08" ></input><br/>
+			<input type="text"  id='boulder_u' name='boulder_u' value="0.82" ></input><br/>
 
-			<small><p>If you wish to load any of the default values into the <strong>Mean R Value (boulder)</strong> box, you can do so by clicking the link in the below table. Use the coordinate links to view the location on Google Maps.</p></small>
+			<small><p>These values are populated automatically using the dropdown menu above. Only change them if you are using a different boulder. Use the coordinate links to view the location of the boulders on Google Maps.</p></small>
 			<table>
  				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th><th>Location (Lon,Lat)</th></tr>
 				<tr><td>University of Manchester</td><td>British Isles</td><td>48.08</td><td>±0.82</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=53.46667120,-2.23484069&basemap=terrain">-2.23484069, 53.46667120</a></td><tr/>
