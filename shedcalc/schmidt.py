@@ -4,7 +4,7 @@ from django import http
 from scipy.stats import t
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
-from numpy import zeros, array, sqrt, log10
+from numpy import zeros, ones, array, sqrt, log10
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 '''
@@ -174,15 +174,16 @@ def getAges(coefficients, x_data):
 	# set function and derivatives for linear models
 	if coefficients['model'] == "linear":
 		f = linear_func
-		d = [x_data, 1]
+		d = [x_data, ones(len(x_data))]
 
 	# set function and derivatives for logarithmic models
 	elif coefficients['model'] == "log":
 		f = log_func
-		d = [log10(x_data), 1]
+		d = [log10(x_data), ones(len(x_data))]
 
 	# predict age and 1-sigma (.68) prediction interval using model coefficients
 	y_predictions = f(coefficients['beta'], x_data)
 	y_pi = prediction_interval(d, x_data, coefficients['eps'], 68., coefficients['beta'], coefficients['cov'])
 
+	# return predictions and 1 sigma confidence
 	return y_predictions, y_pi
