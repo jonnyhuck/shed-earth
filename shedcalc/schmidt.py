@@ -133,12 +133,12 @@ def linear_func(beta, x):
 	return beta[0] * x + beta[1]
 
 
-def prediction_interval(dfdp, x, yerr, signif, popt, pcov):
+def prediction_interval(dfdp, n, yerr, signif, popt, pcov):
 	"""
 	* Calculate Preduction Intervals
 	*
 	*  dfdp    : derivatives of that function (calculated using sympy.diff)
-	*  x       : the x values
+	*  n       : the number of samples in the original curve
 	*  y_err   : the maximum residual on the y axis
 	*  signif  : the significance value (68., 95. and 99.7 for 1, 2 and 3 sigma respectively)
 	*  popt    : the ODR parameters for the fit, calculated using scipy.odr.run()
@@ -148,7 +148,6 @@ def prediction_interval(dfdp, x, yerr, signif, popt, pcov):
 	"""
 	# get number of fit parameters and data points
 	np = len(popt)
-	n = len(x)
 
 	# convert provided value to a significance level (e.g. 95. -> 0.05), then calculate alpha
 	alpha = 1. - (1 - signif / 100.0) / 2
@@ -183,7 +182,7 @@ def getAges(coefficients, x_data):
 
 	# predict age and 1-sigma (.68) prediction interval using model coefficients
 	y_predictions = f(coefficients['beta'], x_data)
-	y_pi = prediction_interval(d, x_data, coefficients['eps'], 68., coefficients['beta'], coefficients['cov'])
+	y_pi = prediction_interval(d, coefficients['samples'], coefficients['eps'], 68., coefficients['beta'], coefficients['cov'])
 
 	# return predictions and 1 sigma confidence
 	return y_predictions, y_pi
