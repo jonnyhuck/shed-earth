@@ -133,18 +133,18 @@ def linear_func(beta, x):
 	return beta[0] * x + beta[1]
 
 
-def prediction_interval(func, dfdp, x, y, yerr, signif, popt, pcov):
+def prediction_interval(dfdp, x, yerr, signif, popt, pcov):
 	"""
 	* Calculate Preduction Intervals
 	*
-	*  func    : function that we are using
 	*  dfdp    : derivatives of that function (calculated using sympy.diff)
-	*  x       : the x values (calculated using numpy.linspace)
-	*  y       : the y values (calculated by passing the ODR parameters and x to func)
+	*  x       : the x values
 	*  y_err   : the maximum residual on the y axis
 	*  signif  : the significance value (68., 95. and 99.7 for 1, 2 and 3 sigma respectively)
 	*  popt    : the ODR parameters for the fit, calculated using scipy.odr.run()
 	*  pcov    : the covariance matrix for the fit, calculated using scipy.odr.run()
+	*
+	* based on p.147 of Mathematical, Numerical, and Statistical Methods in Extraterrestrial Physics
 	"""
 	# get number of fit parameters and data points
 	np = len(popt)
@@ -183,7 +183,6 @@ def getAges(coefficients, x_data):
 
 	# predict age and 1-sigma (.68) prediction interval using model coefficients
 	y_predictions = f(coefficients['beta'], x_data)
-	y_pi = prediction_interval(f, d, x_data, y_predictions, coefficients['eps'],
-		68., coefficients['beta'], coefficients['cov'])
+	y_pi = prediction_interval(d, x_data, coefficients['eps'], 68., coefficients['beta'], coefficients['cov'])
 
 	return y_predictions, y_pi
