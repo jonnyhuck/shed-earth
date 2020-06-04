@@ -2,10 +2,9 @@
 
 from django import http
 from scipy.stats import t
-from math import log10
 import matplotlib.pyplot as plt
-from numpy import zeros, array, sqrt
 from matplotlib.figure import Figure
+from numpy import zeros, array, sqrt, log10
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 '''
