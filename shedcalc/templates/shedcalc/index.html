@@ -106,17 +106,6 @@
 			alert("The Mean R Value (Boulder) must be numeric");
 			return false;
 		};
-		//verify that there is some data
-		if (document.getElementById('boulder_u').value == "") {
-			alert("please enter some data into the R Value uncertainty box");
-			return false;
-		}
-		//verify that it is numeric
-		if (isNaN(document.getElementById('boulder_u').value)) {
-			alert("The R Value uncertainty must be numeric");
-			return false;
-		};
-
 		return true;
 	}
 
@@ -147,6 +136,7 @@
 	 */
 	function setRValue(r, u){
 		document.getElementById('boulder_r').value = r.toString();
+		document.getElementById('ref_boulder_r').value = r.toString();
 		document.getElementById('boulder_u').value = u.toString();
 	}
 
@@ -407,14 +397,11 @@
 				<option value='48.67'>Carlit (Pyrenees)</option>
 			</select>
 
-			<img id="boulderimg" src="/static/shedcalc/images/manchester.png" alt="Photograph of boulder location">
-
-			<label for='boulder_r'>Mean R Value (Boulder):</label>
+			<label for='boulder_r'>User Mean R Value for selected boulder:</label>
 			<input type="text"  id='boulder_r' name='boulder_r' value="48.08" ></input><br/>
-			<label for='boulder_u'>R Value Uncertainty (Boulder):</label>
-			<input type="text"  id='boulder_u' name='boulder_u' value="0.82" ></input><br/>
-
-			<small><p>These values are populated automatically using the dropdown menu above. Only change them if you are using a different boulder. Use the coordinate links to view the location of the boulders on Google Maps.</p></small>
+			<label for='boulder_u'>Reference mean R value and uncertainty for selected boulder (fill automatically based on selected boulder):</label>
+			<input type="text"  id='ref_boulder_r' name='ref_boulder_r' value="48.08" readonly></input>&nbsp;&plusmn;<input type="text"  id='boulder_u' name='boulder_u' value="0.82" readonly></input><br/>
+			<img id="boulderimg" src="/static/shedcalc/images/manchester.png" alt="Photograph of boulder location">
 			<table>
  				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th><th>Location (Lon,Lat)</th></tr>
 				<tr><td>University of Manchester</td><td>British Isles</td><td>48.08</td><td>±0.82</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=53.46667120,-2.23484069&basemap=terrain">-2.23484069, 53.46667120</a></td><tr/>

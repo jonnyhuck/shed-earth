@@ -19,3 +19,10 @@ img {
     margin-right: auto;
 		max-height: 500px;
 }
+
+input:read-only {
+  color: gray;
+}
+input:-moz-read-only { /* For Firefox */
+ color: gray;
+}
