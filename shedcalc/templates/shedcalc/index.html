@@ -25,6 +25,7 @@
 		document.getElementById('after').value = "47.5";
 
 		//set to gb
+		document.getElementById('region').selectedIndex = 0;
 		region_select(0);
 	}
 
@@ -105,7 +106,6 @@
 			alert("The Mean R Value (Boulder) must be numeric");
 			return false;
 		};
-
 		return true;
 	}
 
@@ -134,8 +134,10 @@
 	/**
 	 * Populate the boulder box with a certain value
 	 */
-	function setRValue(val){
-		document.getElementById('boulder_r').value = val.toString();
+	function setRValue(r, u){
+		document.getElementById('boulder_r').value = r.toString();
+		document.getElementById('ref_boulder_r').value = r.toString();
+		document.getElementById('boulder_u').value = u.toString();
 	}
 
 	/**
@@ -145,7 +147,8 @@
 
 		//set the R Value for the default for the selected boulder
 		var rVals = [48.08, 52.60, 44.14, 48.67];
-		setRValue(rVals[selectedIndex]);
+		var uncertainties = [0.82, 0.74, 0.60, 0.65];
+		setRValue(rVals[selectedIndex], uncertainties[selectedIndex]);
 
 		//set the image for the selected boulder
 		var imgs = ["manchester.png", "maladeta.png", "bassies.png", "carlit.png"];
@@ -398,12 +401,11 @@
 				<option value='48.67'>Carlit (Pyrenees)</option>
 			</select>
 
-			<img id="boulderimg" src="/static/shedcalc/images/manchester.png" alt="Photograph of boulder location">
-
-			<label for='boulder'>Mean R Value (Boulder):</label>
+			<label for='boulder_r'>User Mean R Value for selected boulder:</label>
 			<input type="text"  id='boulder_r' name='boulder_r' value="48.08" ></input><br/>
-
-			<small><p>If you wish to load any of the default values into the <strong>Mean R Value (boulder)</strong> box, you can do so by clicking the link in the below table. Use the coordinate links to view the location on Google Maps.</p></small>
+			<label for='boulder_u'>Reference mean R value and uncertainty for selected boulder (fill automatically based on selected boulder):</label>
+			<input type="text"  id='ref_boulder_r' name='ref_boulder_r' value="48.08" readonly></input>&nbsp;&plusmn;<input type="text"  id='boulder_u' name='boulder_u' value="0.82" readonly></input><br/>
+			<img id="boulderimg" src="/static/shedcalc/images/manchester.png" alt="Photograph of boulder location">
 			<table>
  				<tr><th>Calibration Boulder Name</th><th>Calibration Curve (Location)</th><th>R-Value</th><th>Uncertainty</th><th>Location (Lon,Lat)</th></tr>
 				<tr><td>University of Manchester</td><td>British Isles</td><td>48.08</td><td>±0.82</td><td><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=53.46667120,-2.23484069&basemap=terrain">-2.23484069, 53.46667120</a></td><tr/>

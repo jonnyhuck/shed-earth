@@ -25,20 +25,20 @@ def calc(request):
 	before = float(request.POST['before'])		# R before sampling
 	after = float(request.POST['after'])		# R after sampling
 	boulderR = float(request.POST['boulder_r'])	# mean R for boulder
+	boulderU = float(request.POST['boulder_u'])	# R uncertainty for boulder
 	boulderV = float(request.POST['boulder_v'])	# calibration R for boulder
 
 	# import the posted table of data and parse into lists
 	names, lats, lngs, data = parseInputTable(request.POST['tabdata'])
 
-	# calculate the drift factor and apply to cells
-	correctedCells = applyDriftFactorToCells(getDriftFactor(before, after, data), data)
-
-	# calibrate values against our boulder
-	calibratedValues = getCalibratedValues(correctedCells, boulderV, boulderR)
+	# if the difference between value and reference is >uncertainty then calibrate values
+	if abs(boulderV - boulderR) > boulderU:
+		data = getCalibratedValues(applyDriftFactorToCells(getDriftFactor(before,
+			after, data), data), boulderV, boulderR)
 
 	# calculate the mean and MAD for each row
-	means = array([ getRowMean(d) for d in calibratedValues ])
-	mads = [ getRowMAD(d) for d in calibratedValues ]
+	means = array([ getRowMean(d) for d in data ])
+	mads = [ getRowMAD(d) for d in data ]
 
  	# calculate the ages and errors based upon selected region
 	regions = ['britain', 'pyrenees']
