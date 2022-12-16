@@ -31,10 +31,15 @@ def calc(request):
 	# import the posted table of data and parse into lists
 	names, lats, lngs, data = parseInputTable(request.POST['tabdata'])
 
-	# if the difference between value and reference is >uncertainty then calibrate values
+	# if the difference between value and reference is > uncertainty then perform instrument calibation and age calibration
 	if abs(boulderV - boulderR) > boulderU:
 		data = getCalibratedValues(applyDriftFactorToCells(getDriftFactor(before,
 			after, data), data), boulderV, boulderR)
+		
+	# If the difference is < uncertainty, just perform instrument calibration	
+	else:
+		data = applyDriftFactorToCells(getDriftFactor(before,
+			after, data), data)
 
 	# calculate the mean and MAD for each row
 	means = array([ getRowMean(d) for d in data ])
