@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from django import http
+# from django import http
 from scipy.stats import t
-import matplotlib.pyplot as plt
-from matplotlib.figure import Figure
-from numpy import zeros, ones, array, sqrt, log10
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+# import matplotlib.pyplot as plt
+# from matplotlib.figure import Figure
+from numpy import zeros, ones, sqrt, log10
+# from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 '''
 # If it whinges about matplotlib, do this:

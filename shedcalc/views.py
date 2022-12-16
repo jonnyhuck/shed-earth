@@ -1,10 +1,10 @@
 from schmidt import *
-from math import ceil
+# from math import ceil
 from numpy import array
 from coefficients import ShedInfo
-from django.template import loader
+# from django.template import loader
 from django.shortcuts import render
-from django.http import HttpResponse
+# from django.http import HttpResponse
 
 
 def index(request):
@@ -46,7 +46,7 @@ def calc(request):
 	ages, error = getAges(ShedInfo.coefficients[regions[region]][prodrates[prodrate]], means)
 
  	# number of decimal places for results display
- 	sf = 2
+	sf = 2
 
  	# prepare table for the web template
 	outputs = []
@@ -73,37 +73,37 @@ def calc(request):
 		})
 
 
-def samples_chart(request):
-	"""
-	Draw the results page samples chart
-	"""
+# def samples_chart(request):
+# 	"""
+# 	Draw the results page samples chart
+# 	"""
 
-	# get sample numbers
-	ages = [float(x) for x in request.GET['a'].split(",")]
-	errors = [float(x) for x in request.GET['e'].split(",")]
-	x = range(1, len(ages)+1)
+# 	# get sample numbers
+# 	ages = [float(x) for x in request.GET['a'].split(",")]
+# 	errors = [float(x) for x in request.GET['e'].split(",")]
+# 	x = range(1, len(ages)+1)
 
-	# max limit of y axis
-	ymax =  int((5 * ceil((max(ages) + max(errors))/5)))
+# 	# max limit of y axis
+# 	ymax =  int((5 * ceil((max(ages) + max(errors))/5)))
 
- 	# create a figure to draw on and add a subplot
-	fig = Figure()
-	ax = fig.add_subplot(1,1,1)
+#  	# create a figure to draw on and add a subplot
+# 	fig = Figure()
+# 	ax = fig.add_subplot(1,1,1)
 
-	# set axis limit to stop y axis going to -5...
-	ax.set_ylim(0, ymax)
+# 	# set axis limit to stop y axis going to -5...
+# 	ax.set_ylim(0, ymax)
 
-	# points and error bars
-	ax.plot(x,ages,'k.', label='Sample Age Points', markersize=3.5)
-	ax.errorbar(x, ages, ecolor='k', yerr=errors, fmt=" ", linewidth=0.5, capsize=0)
+# 	# points and error bars
+# 	ax.plot(x,ages,'k.', label='Sample Age Points', markersize=3.5)
+# 	ax.errorbar(x, ages, ecolor='k', yerr=errors, fmt=" ", linewidth=0.5, capsize=0)
 
-	# labels etc
-	ax.set_xlabel('Sample Order')
-	ax.set_ylabel('Age (ka)')
-	ax.set_title('Estimated Sample Ages')
+# 	# labels etc
+# 	ax.set_xlabel('Sample Order')
+# 	ax.set_ylabel('Age (ka)')
+# 	ax.set_title('Estimated Sample Ages')
 
-	# encode to send to browser
-	canvas=FigureCanvas(fig)
-	response=http.HttpResponse(content_type='image/png')
-	canvas.print_png(response)
-	return response
+# 	# encode to send to browser
+# 	canvas=FigureCanvas(fig)
+# 	response=http.HttpResponse(content_type='image/png')
+# 	canvas.print_png(response)
+# 	return response
