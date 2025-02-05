@@ -1,7 +1,7 @@
-from schmidt import *
+from .schmidt import *
 # from math import ceil
 from numpy import array
-from coefficients import ShedInfo
+from .coefficients import ShedInfo
 # from django.template import loader
 from django.shortcuts import render
 # from django.http import HttpResponse

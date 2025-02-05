@@ -159,8 +159,8 @@ def prediction_interval(dfdp, n, xn, yerr, signif, popt, pcov):
 	# ?? some sort of processing of covarianvce matrix and derivatives...
 	d = zeros(xn)
 	for j in range(np):
-	    for k in range(np):
-	        d += dfdp[j] * dfdp[k] * pcov[j,k]
+		for k in range(np):
+			d += dfdp[j] * dfdp[k] * pcov[j,k]
 
 	# return prediction band offset for a new measurement
 	return tval * sqrt(yerr**2 + d)
