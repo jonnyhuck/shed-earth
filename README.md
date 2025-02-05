@@ -32,7 +32,30 @@ The underlying <sup>10</sup>Be TCN exposure ages and their corresponding Schmidt
 These include the default globally-calibrated <sup>10</sup>Be production rate of Borchers et al. (2016), in addition to locally-calibrated production rates from Loch Lomond (Fabel et al., 2012), Rannoch Moor (Putnam et al., 2019) and Glen Roy (Small and Fabel, 2015). All ages are calculated using the time-independent “Lm” scaling scheme (Lal, 1991; Stone, 2000) and assuming 0 mm ka<sup>-1</sup> erosion.
 
 Raw data used for <sup>10</sup>Be exposure age calculation are available [here](http://huckg.is/shed-earth/Calibration_CRONUS.csv) in the format required for the CRONUS Earth Web Calculator (Version 2.0; Marrero et al., 2016, available at: http://cronus.cosmogenicnuclides.rocks/2.0/) and [here](http://huckg.is/shed-earth/Calibration_Balco.csv) in the format required for the online calculators formerly known as the CRONUS-Earth online calculators (Balco et al., 2008; https://hess.ess.washington.edu/).                    
-	                                
+
+## Running Locally
+To run a local version of this website, set up a suitable Python environment with the collowing commands (here using [Anaconda](https://docs.anaconda.com/miniconda/install/)):
+
+```bash
+conda create --name shed --channel conda-forge --override-channels --yes python=3 django matplotlib scipy
+conda activate shed
+```
+
+Then download a copy of this repository wither using the green button, or with the following command:
+
+```bash
+git clone git@github.com:jonnyhuck/shed-earth.git
+cd shed-earth
+```
+
+Finally, run the local server that is built into Django
+
+```bash
+python manage.py runserver 8000
+```
+
+The website should then be available at [http://127.0.0.1:8000/shedcalc/](http://127.0.0.1:8000/shedcalc/). 
+
 ## References           
 
 - [Tomkins, M. D., Dortch, J. M., & Hughes, P. D. (2016). Schmidt Hammer exposure dating (SHED): Establishment and implications for the retreat of the last British Ice Sheet. *Quaternary Geochronology*, 33, 46–60.](https://doi.org/10.1016/j.quageo.2016.02.002)
