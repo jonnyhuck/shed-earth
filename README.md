@@ -1,6 +1,10 @@
 # SHED Earth ([http://shed.earth](http://shed.earth))
 
-This repository comprises the source code for the [shed.earth](http://shed.earth) website (based upon [Django](https://www.djangoproject.com/)). 
+**DEPRECATED:** This repository comprises the source code for the old [shed.earth](http://shed.earth) website (based upon [Django](https://www.djangoproject.com/)). THis has since been replaced by a newer version located at [https://github.com/jonnyhuck/shed-earth_js](https://github.com/jonnyhuck/shed-earth_js).
+
+
+
+---
 
 **SHED** refers to **Schmidt Hammer Exposure Dating**: a technique that provides a cost-effective solution for dating the exposure of granite surfaces. This can be used to constrain the timing of past events e.g. glacial retreat, which permits a better understanding of the links between climate and landscape evolution. 
 
@@ -19,7 +23,7 @@ This dataset has recently been updated by Tomkins et al. (2018a), with the inclu
 </p>
 
 The **key files** in this repository are:
- 
+
 - shedcalc/**schmidt.py**: this file includes the core functions for instrument and age calibration, and age prediction using Monte Carlo orthogonal distance regression (Boggs and Rogers, 1989).    
 - shedcalc/**coefficients.py**: this file contains model betas, residuals and covariance matrices for each calibration curve and each production rate. These values are utilised by schmidt.py for calculating ages and predictions limits.
 - shedcalc\templates\shedcalc:
@@ -27,7 +31,7 @@ The **key files** in this repository are:
 	- **results.html**: HTML code for website results page.
 
 ## Data availability
-	
+
 The underlying <sup>10</sup>Be TCN exposure ages and their corresponding Schmidt hammer R-values are available [here](http://huckg.is/shed-earth/Calibration_Summary.csv) for both calibration curves and for a range of production rates.
 These include the default globally-calibrated <sup>10</sup>Be production rate of Borchers et al. (2016), in addition to locally-calibrated production rates from Loch Lomond (Fabel et al., 2012), Rannoch Moor (Putnam et al., 2019) and Glen Roy (Small and Fabel, 2015). All ages are calculated using the time-independent “Lm” scaling scheme (Lal, 1991; Stone, 2000) and assuming 0 mm ka<sup>-1</sup> erosion.
 
